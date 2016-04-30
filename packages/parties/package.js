@@ -15,10 +15,12 @@ Package.onUse(function(api) {
   
   api.use([
     'ecmascript',
-    'app:riot-api',
     'templating',
+    'mongo',
+    'check',
     'kadira:flow-router',
-    'kadira:blaze-layout'
+    'kadira:blaze-layout',
+    'app:riot-api'
   ]);
 
   api.mainModule('client/index.js', 'client');
