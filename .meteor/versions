@@ -1,5 +1,6 @@
 allow-deny@1.0.4
-autopublish@1.0.7
+app:parties@0.0.1
+app:riot-api@0.0.1
 autoupdate@1.2.9
 babel-compiler@6.6.4
 babel-runtime@0.1.8
@@ -13,6 +14,8 @@ caching-compiler@1.0.4
 caching-html-compiler@1.0.6
 callback-hook@1.0.8
 check@1.2.1
+coffeescript@1.0.17
+cosmos:browserify@0.5.1
 ddp@1.2.5
 ddp-client@1.2.7
 ddp-common@1.2.5
@@ -30,8 +33,9 @@ html-tools@1.0.9
 htmljs@1.0.9
 http@1.1.5
 id-map@1.0.7
-insecure@1.0.7
 jquery@1.11.8
+kadira:blaze-layout@2.0.1
+kadira:flow-router@2.0.2
 launch-screen@1.0.11
 livedata@1.0.18
 logging@1.0.12
@@ -51,6 +55,7 @@ observe-sequence@1.0.11
 ordered-dict@1.0.7
 promise@0.6.7
 random@1.0.9
+reactive-dict@1.1.7
 reactive-var@1.0.9
 reload@1.1.8
 retry@1.0.7

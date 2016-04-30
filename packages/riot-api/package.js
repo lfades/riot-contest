@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'app:parties',
+  name: 'app:riot-api',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -13,14 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.3.2.4');
   
-  api.use([
-    'ecmascript',
-    'app:riot-api',
-    'templating',
-    'kadira:flow-router',
-    'kadira:blaze-layout'
-  ]);
-
-  api.mainModule('client/index.js', 'client');
-  api.mainModule('server/index.js', 'server');
+  api.use('ecmascript');
+  
+  api.mainModule('riot-api.js', 'server');
 });
