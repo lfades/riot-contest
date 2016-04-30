@@ -46,6 +46,20 @@ header .menu{
 	    margin-top: 1px;
 	}
 
+/* buttons */
+
+.btn{
+    padding: 10px 20px;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;	
+}
+.btn-red{background: #E63636;}
+.btn-blue{background: #08435D;}
+
 /* chat */
 .chat{
 	padding-right: 0; 
