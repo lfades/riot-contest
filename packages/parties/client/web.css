@@ -1,0 +1,74 @@
+header{
+    background: #ddd;
+    padding: 12px 9px;
+}
+header .menu{
+    display: flex;
+    justify-content: center;	
+}
+
+#field{
+    min-height: 900px;
+    text-align: center;
+    height: 100%;
+}
+#field ul{
+	color: #ffffff;
+}
+.blue{
+	background: #117CAB;
+}
+	.blue h2{
+		color: #ffffff;
+	}
+
+.img-nation img{
+	width: 300px;
+}
+
+.red{
+	background: #000000;
+}
+	.red h2{
+		color: #E63636;
+	}
+
+
+/* cards */
+.card-champ{
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 14px;
+}
+	.card-champ p{
+		margin-bottom: 0px;
+	    padding-bottom: 3px;
+	    margin-top: 1px;
+	}
+
+/* chat */
+.chat{
+	padding-right: 0; 
+}
+#b-chat{
+	padding: 10px;
+}
+.box-chat{
+    min-height: 600px;
+    box-shadow: 1px 1px 1px #ddd;
+    padding: 2px 7px;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-bottom: none;	
+}	
+.box-text{
+    padding: 10px;
+    background: #EAEAEA;
+    box-shadow: 1px 1px 2px #BBBBBB;	
+}
+	.box-text textarea{
+	    width: 100%;
+	    border: none;
+	    background: #EAEAEA;
+
+	}
