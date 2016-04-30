@@ -1,11 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import RiotApi from 'meteor/app:riot-api';
-import Parties from '../collection';
-/*
-RiotApi.get('/championmastery/location/{platformId}/player/{playerId}/champions', {
-	platformId: 'LA1',
-	playerId: '29275'
-})*/
+import { Parties, Summoners } from '../collection';
+
 Meteor.publish('party', function (partyId) {
-	return Parties.findOne({_id: partyId});
+	const party = Parties.find({_id: partyId});
+	if (party.count()) {
+		return [
+			party,
+			Summoners.find({parties: partyId})
+		];
+	}
+	return this.ready();
 });
