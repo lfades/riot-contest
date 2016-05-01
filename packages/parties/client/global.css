@@ -1,6 +1,6 @@
 /* all */
 
-html{
+html {
   background: url(/bg.jpg) no-repeat; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -8,30 +8,31 @@ html{
   background-size: cover;	
 }
 input:-moz-placeholder { color:#555555; }
-body{
+body {
 	margin: 0px;
 	font-family: 'Muli','Arial';
 	overflow-x: hidden;
 }
 * { outline: none; }
-ul{
+ul {
   margin-top: 0px;
   list-style: none;
 }
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
     outline: 0;
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
-.text-right{
+.text-right {
   text-align: right;
 }
 
 /*margins*/
 
-.m-t-10{
+.m-t-10 {
 	margin-top: 10%;
 }
 
@@ -40,24 +41,24 @@ textarea:focus, input:focus{
   utilice las clases globales de flexbox cuando pueda o crea unas nuevas si se requieren
   These are my own flexbox classes, easy stuff, easy life.
  */
-.fx-wrap{
+.fx-wrap {
   flex-wrap:wrap;
   -webkit-flex-wrap: wrap;
 }
 
-.fx-row{
+.fx-row {
   display: flex;
   display: -webkit-flex;
 }
 
-.fx-row-space-bt{
+.fx-row-space-bt {
   display: flex;
   display: -webkit-flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
 
-.fx-center-space{
+.fx-center-space {
   display: flex;
   display: -webkit-flex;
   align-items: center;
@@ -65,20 +66,20 @@ textarea:focus, input:focus{
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
-.fx-center{
+.fx-center {
   display: flex;
   display: -webkit-flex;
   align-items: center;
   -webkit-align-items: center;
 }
 
-.fx-r{
+.fx-r {
 	display: flex;
   display: -webkit-flex;
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
 }
-.fx-around-center{
+.fx-around-center {
 	display: flex;
   display: -webkit-flex;
   justify-content: space-around;  
@@ -86,13 +87,13 @@ textarea:focus, input:focus{
   align-items:center;
   -webkit-align-items:center;
 }
-.fx-c{
+.fx-c {
 	display: flex;
   display: -webkit-flex;
   justify-content: center;
   -webkit-justify-content: center;
 }
-.fx-col{
+.fx-col {
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
@@ -100,7 +101,7 @@ textarea:focus, input:focus{
   align-items:center;
   -webkit-align-items:center;
 }
-.fx-col-space-bt{
+.fx-col-space-bt {
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
@@ -162,28 +163,28 @@ mt = margin-top y asi sucesivamente
   margin-top: 20%;
 }
   /*  widths */
-  .c-xs-2{
+  .c-xs-2 {
     width: 50%;
   } 
-  .c-xs-1{
+  .c-xs-1 {
     width: 100%;
     padding-right:0px; 
   }
 
 
-  .mb-xs-10{
+  .mb-xs-10 {
     margin-bottom: 10px;
   }
-  .ml-xs-15{
+  .ml-xs-15 {
     margin-left: 15px;
   }
 
-  .fx-xs-col{
+  .fx-xs-col {
     flex-direction:column;
     -webkit-flex-direction:column;
   }  
 
-  .fx-xs-row{
+  .fx-xs-row {
     flex-direction: row;
     -webkit-flex-direction: row;
     display: flex;
@@ -191,17 +192,17 @@ mt = margin-top y asi sucesivamente
     justify-content:center;
     -webkit-justify-content:center;
   }
-  .fx-xs-rev-col{
+  .fx-xs-rev-col {
       flex-direction: column-reverse;
       -webkit-flex-direction: column-reverse; 
   }
-  .fx-xs-col-c{
+  .fx-xs-col-c {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .ml-xs-0{
+  .ml-xs-0 {
     margin-left: 0px;
   }
 
@@ -216,11 +217,11 @@ mt = margin-top y asi sucesivamente
 }
 
 @media (max-width: 992px){
-  .fx-sm-col{
+  .fx-sm-col {
     flex-direction:column;
     -webkit-flex-direction:column;    
   }  
-  .fx-sm{
+  .fx-sm {
     display: flex;
     display: -webkit-flex;
   }
