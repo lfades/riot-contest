@@ -10,6 +10,20 @@ header {
     position: relative;
     top: 4px;
 }
+.share-link {
+    width: 100%;
+    text-align: center;  
+}
+.select-mastery {
+    padding: 11px 20px;
+    margin-right: 13px;
+    border-radius: 3px;
+    background: #08435D;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+}
 
 .menu {line-height: 38px;}
 
@@ -55,8 +69,9 @@ header {
 
 .icon-summoner {
     border-radius: 60px;
-    border: 2px solid #ddd;
-    width: 75px;  
+    box-shadow: 0px 1px 2px #616161;
+    border: 3px solid #191919;
+    width: 75px;
 }
 .name-sum {font-size: 19px;}
 
@@ -67,13 +82,14 @@ header {
 /* buttons */
 
 #start {
-    background: #353535;
-    font-size: 15px;
-    border: 1px solid #FFF;
+    background: #F9B730;
+    font-size: 17px;
+    border: 1px solid #946607;
     border-radius: 3px;
     cursor: pointer;
+    font-weight: bold;
     padding: 10px 20px;
-    color: #fff;    
+    width: 130px; 
 }
 .btn {
     padding: 10px 20px;
