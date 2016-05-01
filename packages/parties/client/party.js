@@ -18,3 +18,18 @@ Template.party.onCreated(function () {
 Template.party.helpers({
 
 });
+
+Template.party.events({
+  'click #demacia' () {
+    Meteor.call('parties.chooseSide', {
+      partyId: FlowRouter.getParam('_id'),
+      side: 1
+    });
+  },
+  'click #noxus' () {
+    Meteor.call('parties.chooseSide', {
+      partyId: FlowRouter.getParam('_id'),
+      side: 2
+    });
+  }
+});

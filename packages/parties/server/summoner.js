@@ -33,21 +33,83 @@ class Summoner {
 
     return championMastery;
   }
+  getSummoner (region, summonerName) {
+    // Summoners should have an index in region and name (the default index is in _id)
+    // Summoners._ensureIndex({region: 1, name: 1});
+    const summoner = Summoners.findOne({region, name: summonerName});
+
+    if (!summoner) {
+      const {id, name, profileIconId} = this.profile(region, summonerName);
+      const championMastery = this.championMastery(region, id);
+
+      return {
+        id, name,
+        update: (partyId) => {
+          const doc = {id, region, name, profileIconId, 
+            championMastery: championMastery.map(champion => {
+              return _.pick(champion, this.championMasteryFields)
+            })
+          };
+
+          if (partyId)
+            doc.parties = [partyId];
+          
+          Summoners.insert(doc);
+        }
+      };
+    }
+    const now = new Date();
+
+    if (summoner.lastUpdateAt < now.setDate(now.getDate - 1)) {
+      const {id, name, profileIconId} = this.profile(region, summonerName);
+      const championMastery = this.championMastery(region, id);
+
+      return {
+        id, name,
+        update: (partyId) => {
+          const operator = {
+            $set: {name, profileIconId, 
+              championMastery: championMastery.map(champion => {
+                return _.pick(champion, this.championMasteryFields)
+              })
+            }
+          };
+
+          if (partyId)
+            operator.$push = {parties: partyId};
+
+          Summoners.update({region, id}, operator);
+        }
+      };
+    }
+
+    const {id, name} = summoner;
+    return {
+      id, name,
+      update (partyId) {
+        return partyId && Summoners.update({region, id}, {$push: {parties: partyId}});
+      }
+    };
+  }
   // links Riot Api with Mongo
-  update (connection, {region, summonerName, partyId}) {
-    const summoner = this.profile(region, summonerName);
-    const {id, name, profileIconId} = summoner;
-    const championMastery = this.championMastery(region, id);
-    // _summoner contains the fields that are stored in the party
+  update (connection, {region, summonerName, partyId, oldSummoner}) {
+    const {id, name, update} = this.getSummoner(region, summonerName);
+    // summoner contains the fields that are stored in the party
     // connections allows to link the user's browser to the application
-    const _summoner = {id, name, connectionId: connection.id};
+    const summoner = {id, name, connectionId: connection.id};
 
     // If the party already exists we add the summoner or create a new party
     const updateParty = () => {
-      if (partyId)
-        return Parties.update({_id: partyId}, {$push: {summoners: _summoner}});
+      if (partyId) {
+        let operator = {$push: {summoners: summoner}};
 
-      partyId = Parties.insert({region, owner: id, summoners: [_summoner]});
+        if (oldSummoner)
+          operator.$pull = {summoners: oldSummoner};
+        
+        return Parties.update({_id: partyId}, operator);
+      }
+
+      partyId = Parties.insert({region, owner: id, summoners: [summoner]});
       return partyId;
     }
     if (!updateParty())
@@ -57,21 +119,11 @@ class Summoner {
     // summoner with the party when he loses his connection to the server
     // e.g close the browser or run out of internet
     connection.onClose(() => {
-      Parties.update({_id: partyId}, {$pull: {summoners: _summoner}});
+      Parties.update({_id: partyId}, {$pull: {summoners: summoner}});
       Summoners.update({region, id},  {$pull: {parties: partyId}});
     });
-    // Summoners should have an index in region and id (the default index is in _id)
-    // Summoners._ensureIndex({region: 1, id: 1});
-    const updated = Summoners.update({region, id}, {
-      $set: {id, name, profileIconId,
-        championMastery: championMastery.map(champion => {
-          return _.pick(champion, this.championMasteryFields)
-        })
-      },
-      $push: {parties: partyId}
-    }, {upsert: true});
-    
-    if (!updated)
+
+    if (!update(partyId))
       throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
 
     return partyId;
