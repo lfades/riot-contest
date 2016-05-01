@@ -12,9 +12,7 @@ header .menu{
     text-align: center;
     height: 100%;
 }
-#field ul{
-	color: #ffffff;
-}
+
 .blue{
 	background: #117CAB;
 }
@@ -65,16 +63,29 @@ header .menu{
 	padding-right: 0; 
 }
 #b-chat{
-	padding: 10px;
+	padding: 0px 7px;
 }
 .box-chat{
-    min-height: 600px;
+	min-height: 836px;
     box-shadow: 1px 1px 1px #ddd;
     padding: 2px 7px;
     height: 100%;
     border: 1px solid #ddd;
     border-bottom: none;	
-}	
+}
+	.box-chat ul{
+		width: 100%;
+		padding: 0px;
+	}
+		.box-chat ul li{
+		    text-align: right;
+		    margin-top: 9px;
+		    margin-right: 5px;
+		}
+	.box-chat span{
+		font-weight: bold;
+	}
+
 .box-text{
     padding: 10px;
     background: #EAEAEA;
