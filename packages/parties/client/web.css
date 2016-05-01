@@ -5,6 +5,11 @@ header {
     box-shadow: 0px 5px 5px #000000;
     color: #fff;
 }
+.logo img {
+    width: 192px;
+    position: relative;
+    top: 4px;
+}
 
 .menu {line-height: 38px;}
 
@@ -115,7 +120,6 @@ header {
     .box-join p {margin:0px;}
 .box-text {
     padding: 10px;
-    background: #EAEAEA;
     box-shadow: 1px 1px 2px #BBBBBB;    
 }
     .box-text textarea {
@@ -124,6 +128,19 @@ header {
         background: #EAEAEA;
 
     }
+.input-chat {
+  color: #fff;
+  width: 96%;
+  background: rgba(12, 12, 12, 0.78);
+  border: none;
+  padding: 10px 9px;
+  box-shadow: 0px 0px 1px #F1F1F1;
+  border-radius: 2px;
+  font-size: 15px;  
+}
+
+
+/* start page*/
 
 .wrapper {
     position: absolute;
