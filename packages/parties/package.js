@@ -18,6 +18,7 @@ Package.onUse(function(api) {
     'templating',
     'mongo',
     'check',
+    'underscore',
     'kadira:flow-router',
     'kadira:blaze-layout',
     'app:riot-api'
