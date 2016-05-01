@@ -16,8 +16,6 @@ textarea:focus, input:focus{
     outline: 0;
 }
 
-
-
 .text-center{
   text-align: center;
 }
@@ -25,9 +23,16 @@ textarea:focus, input:focus{
   text-align: right;
 }
 
+/*margins*/
+
+.m-t-10{
+	margin-top: 10%;
+}
+
 /*
   fx = flexbox
   utilice las clases globales de flexbox cuando pueda o crea unas nuevas si se requieren
+  These are my own flexbox classes, easy stuff, easy life.
  */
 .fx-wrap{
   flex-wrap:wrap;
