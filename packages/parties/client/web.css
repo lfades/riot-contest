@@ -212,9 +212,26 @@ header {
 .enter {
     color: #EF7F3C;
     font-weight: bold;
-    font-size: 13px;
-    margin-top: 7px;
+    font-size: 12px;
+    margin-top: 10px;
 }
+
+/* box-summoner */
+.box-newsummoner{
+    position: absolute;
+    width: 100%;
+    bottom: 45%;
+    z-index: 100;
+}
+.wrapper-newsum {
+    background: rgba(0, 0, 0, 0.82);
+    width: 3000px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* footer*/
 
 .footer{
     background: rgba(0, 0, 0, 0.75);  
@@ -227,6 +244,8 @@ header {
     text-align: center;
     margin: 0;
   }
+
+
 
 
 @media (max-height: 800px) {
