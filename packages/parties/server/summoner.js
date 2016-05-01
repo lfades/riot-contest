@@ -30,16 +30,26 @@ class Summoner {
 
     return championMastery;
   }
-  update (region, summonerName, partyId) {
+  update (connection, {region, summonerName, partyId}) {
     const summoner = this.profile(region, summonerName);
     const {id, name, profileIconId} = summoner;
     const championMastery = this.championmastery(region, id);
+    const _summoner = {id, name, connectionId: connection.id};
 
-    if (!partyId) {
-      partyId = Parties.insert({region, owner: id});
-      if (!partyId)
-        throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
+    const updateParty = () => {
+      if (partyId)
+        return Parties.update({_id: partyId}, {$push: {summoners: _summoner}});
+
+      partyId = Parties.insert({region, owner: id, summoners: [_summoner]});
+      return partyId;
     }
+    if (!updateParty())
+      throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
+
+    connection.onClose(() => {
+      Parties.update({_id: partyId}, {$pull: {summoners: _summoner}});
+    });
+    
     // No estoy utilizando index todavia, se puede crear uno haciendo lo siguiente
     // Summoners._ensureIndex({region: 1, id: 1})
     const updated = Summoners.update({region, id}, {
@@ -49,7 +59,7 @@ class Summoner {
         })
       },
       $push: {parties: partyId}
-    }, {upsert: true}))
+    }, {upsert: true})
     
     if (!updated)
       throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
