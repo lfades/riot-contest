@@ -1,7 +1,8 @@
 import './main_layout.html';
-import './home.html';
-import './start.html';
+
 import './start.js';
-import '../routes.js';
+import './party.js';
+import '../routes';
+
 import './global.css';
 import './web.css';

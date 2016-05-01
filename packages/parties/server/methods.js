@@ -1,17 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import { Parties, Summoners } from '../collection';
+import RiotApi from 'meteor/app:riot-api';
 import Summoner from './summoner';
-
-const summonerPattern = {
-  id: String,
-  name: String
-};
 
 Meteor.methods({
   'parties.insert' (data) {
     check(data, {
-      region: String,
+      region: Match.OneOf(...RiotApi.regions),
       summonerName: String
     });
 

@@ -1,27 +1,32 @@
 <template name="start">
 	<div class="box-layer"></div>
 	
-	<div class="wrapper">
+	<form class="wrapper">
 		<div class="box-start">
 			<div>
 				<div>
-					{{> startSelect }} <input class="input-start" placeholder="Summoner name" />
+					{{> startSelect }}
+					<input id="name" class="input-start" placeholder="Summoner name" required/>
 				</div>
 			</div>
 			<p class="enter">PRESS 'ENTER' TO START</p>
 		</div>
-	</div>
+	</form>
 </template>
 
-
 <template name="startSelect">
-	<select id="server" class="select-start">
-	    <option value="hide">Servidor</option>
-	    <option value="2010">2010</option>
-	    <option value="2011">2011</option>
-	    <option value="2012">2012</option>
-	    <option value="2013">2013</option>
-	    <option value="2014">2014</option>
-	    <option value="2015">2015</option>
+	<select id="server" class="select-start" required>
+		<option value="">Server</option>
+		<option value="NA1">North America</option>
+		<option value="LA1">LAN</option>
+		<option value="LA2">LAS</option>
+		<option value="EUN1">EU Nordic</option>
+		<option value="EUW1">EU West</option>
+		<option value="KR">Korea</option>
+		<option value="BR1">Brazil</option>
+		<option value="RU">Russia</option>
+		<option value="TR1">Turkey</option>
+		<option value="JP1">Japan</option>
+		<option value="OC1">Oceania</option>
 	</select>	
 </template>

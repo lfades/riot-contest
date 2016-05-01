@@ -13,14 +13,14 @@ class Summoner {
   // returns the basic summoner information
   profile (region, summonerName) {
     const summoner = RiotApi.get('/api/lol/{region}/v1.4/summoner/by-name/{summonerNames}', {
-      region,
+      region: RiotApi.getRegion(region),
       summonerNames: summonerName
     });
 
     if (!summoner)
       throw new Meteor.Error(403, 'No hay un invocador registrado con ese nombre');
 
-    return summoner;
+    return summoner[summonerName.toLowerCase()];
   }
   // returns the mastery of all the champions of a summoner
   championMastery (platformId, playerId) {
@@ -37,7 +37,7 @@ class Summoner {
   update (connection, {region, summonerName, partyId}) {
     const summoner = this.profile(region, summonerName);
     const {id, name, profileIconId} = summoner;
-    const championMastery = this.championmastery(region, id);
+    const championMastery = this.championMastery(region, id);
     // _summoner contains the fields that are stored in the party
     // connectionId allows to link the user's browser to the application
     const _summoner = {id, name, connectionId: connection.id};
