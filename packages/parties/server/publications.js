@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties, Summoners } from '../collection';
+import { Parties, Summoners } from '../collections';
 
 // This is the data we send to the client
 Meteor.publish('party', function (partyId) {
@@ -7,7 +7,7 @@ Meteor.publish('party', function (partyId) {
   if (party.count()) {
     return [
       party,
-      Summoners.find({parties: partyId})
+      Summoners.find({parties: partyId}, {fields: {championMastery: 0}})
     ];
   }
   return this.ready();

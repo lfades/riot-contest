@@ -1,0 +1,21 @@
+<template name="partyChat">
+	<div class="chat c-3 c-xs-1">
+		<div id="b-chat"> 
+			<div class="box-chat">
+				<ul>
+					{{#each messages }}
+						<li><span>{{ name }}: </span> {{ text }}</li>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="box-join">
+				{{#with summoners }}
+					<p>{{ names }} {{ have }} join the room</p>
+				{{/with}}
+			</div>
+			<form class="box-text">
+				<input class="input-chat" placeholder="Say something" />
+			</form>
+		</div>
+	</div>
+</template>

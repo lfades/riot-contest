@@ -17,6 +17,7 @@ Package.onUse(function(api) {
     'ecmascript',
     'templating',
     'mongo',
+    'tracker',
     'check',
     'underscore',
     'kadira:flow-router',

@@ -13,8 +13,7 @@ Template.start.events({
 
     Meteor.call('parties.insert', summoner, (error, partyId) => {
       if (error) {
-        return;
-        // we should do something
+        console.log(error);
       } else {
         localStorage.setItem('summoner', summoner.summonerName);
         FlowRouter.go(`/party/${partyId}`);

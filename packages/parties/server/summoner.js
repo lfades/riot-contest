@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import RiotApi from 'meteor/app:riot-api';
-import { Parties, Summoners } from '../collection';
+import { Parties, Summoners } from '../collections';
 
 class Summoner {
   constructor () {
@@ -20,7 +20,7 @@ class Summoner {
     if (!summoner)
       throw new Meteor.Error(403, 'No hay un invocador registrado con ese nombre');
 
-    return summoner[summonerName.toLowerCase()];
+    return summoner[summonerName];
   }
   // returns the mastery of all the champions of a summoner
   championMastery (platformId, playerId) {
@@ -33,19 +33,23 @@ class Summoner {
 
     return championMastery;
   }
-  getSummoner (region, summonerName) {
-    // Summoners should have an index in region and name (the default index is in _id)
-    // Summoners._ensureIndex({region: 1, name: 1});
-    const summoner = Summoners.findOne({region, name: summonerName});
+  standardizedName (summonerName) {
+    return summonerName.replace(/\s/g, '').toLowerCase();
+  }
+  getSummoner (region, _name) {
+    // _name is the standardized summoner name, which is the summoner name in all lower case and with spaces removed
+    // Summoners should have an index in region and _name (the default index is in _id)
+    // Summoners._ensureIndex({region: 1, _name: 1});
+    const summoner = Summoners.findOne({region, _name: _name});
 
     if (!summoner) {
-      const {id, name, profileIconId} = this.profile(region, summonerName);
+      const {id, name, profileIconId} = this.profile(region, _name);
       const championMastery = this.championMastery(region, id);
 
       return {
-        id, name,
+        id, name, _name,
         update: (partyId) => {
-          const doc = {id, region, name, profileIconId, 
+          const doc = {id, region, name, _name, profileIconId,
             championMastery: championMastery.map(champion => {
               return _.pick(champion, this.championMasteryFields)
             })
@@ -54,21 +58,21 @@ class Summoner {
           if (partyId)
             doc.parties = [partyId];
           
-          Summoners.insert(doc);
+          return Summoners.insert(doc);
         }
       };
     }
     const now = new Date();
 
     if (summoner.lastUpdateAt < now.setDate(now.getDate - 1)) {
-      const {id, name, profileIconId} = this.profile(region, summonerName);
+      const {id, name, profileIconId} = this.profile(region, _name);
       const championMastery = this.championMastery(region, id);
 
       return {
         id, name,
         update: (partyId) => {
           const operator = {
-            $set: {name, profileIconId, 
+            $set: {id, name, _name, profileIconId, 
               championMastery: championMastery.map(champion => {
                 return _.pick(champion, this.championMasteryFields)
               })
@@ -78,21 +82,22 @@ class Summoner {
           if (partyId)
             operator.$push = {parties: partyId};
 
-          Summoners.update({region, id}, operator);
+          return Summoners.update({region, _name}, operator);
         }
       };
     }
-
     const {id, name} = summoner;
     return {
       id, name,
       update (partyId) {
-        return partyId && Summoners.update({region, id}, {$push: {parties: partyId}});
+        return partyId && Summoners.update({region, _name}, {$push: {parties: partyId}});
       }
     };
   }
   // links Riot Api with Mongo
-  update (connection, {region, summonerName, partyId, oldSummoner}) {
+  update (connection, {region, summonerName, partyId, oldSummonerId}) {
+    summonerName = this.standardizedName(summonerName);
+    
     const {id, name, update} = this.getSummoner(region, summonerName);
     // summoner contains the fields that are stored in the party
     // connections allows to link the user's browser to the application
@@ -101,12 +106,15 @@ class Summoner {
     // If the party already exists we add the summoner or create a new party
     const updateParty = () => {
       if (partyId) {
-        let operator = {$push: {summoners: summoner}};
-
-        if (oldSummoner)
-          operator.$pull = {summoners: oldSummoner};
-        
-        return Parties.update({_id: partyId}, operator);
+        if (oldSummonerId) {
+          return Parties.update(
+            {_id: partyId, 'summoners.id': oldSummonerId},
+            {$set: {'summoners.$': summoner}}
+          );
+        }
+        return Parties.update({_id: partyId}, {
+          $push: {summoners: summoner}
+        });
       }
 
       partyId = Parties.insert({region, owner: id, summoners: [summoner]});

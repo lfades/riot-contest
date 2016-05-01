@@ -66,7 +66,7 @@ class RiotApi {
 
       if (response.statusCode === 500)
         throw new Meteor.Error(500, 'An error has occurred with the Riot server');
-
+      
       throw new Meteor.Error(500, 'An unexpected error has occurred');
     }
   }

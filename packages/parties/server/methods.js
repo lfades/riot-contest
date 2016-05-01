@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 import { _ } from 'meteor/underscore';
-import { Parties, Summoners } from '../collection';
+import { Parties, Summoners } from '../collections';
 import RiotApi from 'meteor/app:riot-api';
 import Summoner from './summoner';
 
@@ -14,12 +14,24 @@ const checkParty = ({partyId, summonerName}) => {
   if (!party)
     throw new Meteor.Error(403, 'No existe la sala');
 
-  if (party.summoners.length >= 5)
+  let oldSummoner;
+  let count = 0;
+
+  summonerName = Summoner.standardizedName(summonerName);
+
+  _.each(party.summoners, ({id, name, connectionId}) => {
+    if (Summoner.standardizedName(name) === summonerName)
+      oldSummoner = {id, connectionId};
+    else
+      count ++;
+  });
+  //throw new Meteor.Error(403, 'No existe la sala');
+  if (count >= 5)
     throw new Meteor.Error(403, 'La sala ya tiene el máximo de invocadores');
 
   return {
     region: party.region,
-    oldSummoner: _.findWhere(party.summoners, {name: data.summonerName})
+    oldSummoner
   };
 }
 
@@ -38,16 +50,17 @@ Meteor.methods({
       summonerName: String
     });
 
-    const {oldSummoner} = checkParty(data)
+    const {oldSummoner, region} = checkParty(data);
 
     if (oldSummoner) {
       let conId = oldSummoner.connectionId;
       if (conId && Sessions[conId])
         throw new Meteor.Error(403, 'No puedes ingresar a la sala');
-      // remove the bot
-      if (!conId)
-        data.oldSummoner = oldSummoner;
+      
+      data.oldSummonerId = oldSummoner.id;
     }
+
+    data.region = region;
 
     Summoner.update(this.connection, data);
   },
@@ -84,18 +97,17 @@ Meteor.methods({
       text: String
     });
     check(summoner, {
-      id: String,
+      id: Number,
       name: String
     });
 
     const {partyId, text} = data;
     const {id, name} = summoner;
 
-    summoner.connectionId = this.connectionId;
-
     Parties.update({
       _id: partyId,
-      summoners: {connectionId: this.connection.id, id, name} 
+      // the order is important, needs to be exactly the same
+      summoners: {id, name, connectionId: this.connection.id} 
     }, {
       $push: {messages: {id, name, text}}
     });
