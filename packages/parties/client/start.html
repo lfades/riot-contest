@@ -1,4 +1,27 @@
 <template name="start">
+	<div class="box-layer"></div>
+	
+	<div class="wrapper">
+		<div class="box-start">
+			<div>
+				<div>
+					{{> startSelect }} <input class="input-start" placeholder="Summoner name" />
+				</div>
+			</div>
+			<p class="enter">PRESS 'ENTER' TO START</p>
+		</div>
+	</div>
+</template>
 
 
+<template name="startSelect">
+	<select id="server" class="select-start">
+	    <option value="hide">Servidor</option>
+	    <option value="2010">2010</option>
+	    <option value="2011">2011</option>
+	    <option value="2012">2012</option>
+	    <option value="2013">2013</option>
+	    <option value="2014">2014</option>
+	    <option value="2015">2015</option>
+	</select>	
 </template>

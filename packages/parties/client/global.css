@@ -1,7 +1,4 @@
 /* all */
-::-webkit-input-placeholder { color:#555555; }
-::-moz-placeholder { color:#555555; } /* firefox 19+ */
-:-ms-input-placeholder { color:#555555; } /* ie */
 
 html{
   background: url(/bg.jpg) no-repeat center center fixed; 
@@ -14,6 +11,7 @@ input:-moz-placeholder { color:#555555; }
 body{
 	margin: 0px;
 	font-family: 'Muli','Arial';
+	overflow-x: hidden;
 }
 * { outline: none; }
 ul{

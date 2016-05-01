@@ -9,6 +9,6 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/party', {
     action: function(params) {
-        BlazeLayout.render("mainLayout", {main: "home"});
+        BlazeLayout.render("mainLayout", {main: "party"});
     }
 });
