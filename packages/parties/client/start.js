@@ -16,6 +16,7 @@ Template.start.events({
         return;
         // we should do something
       } else {
+        localStorage.setItem('summoner', summoner.summonerName);
         FlowRouter.go(`/party/${partyId}`);
       }
     });
