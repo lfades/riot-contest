@@ -1,11 +1,11 @@
+/* header and menu*/
 header{
-    background: #ddd;
-    padding: 12px 9px;
+    background: #464646;
+    padding: 8px 9px;
+    color: #fff;
 }
-header .menu{
-    display: flex;
-    justify-content: center;	
-}
+
+.menu{line-height: 38px;}
 
 #field{
     min-height: 900px;
@@ -45,7 +45,15 @@ header .menu{
 	}
 
 /* buttons */
-
+#start{
+	background: #353535;
+    font-size: 15px;
+    border: 1px solid #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 10px 20px;
+    color: #fff;	
+}
 .btn{
     padding: 10px 20px;
     border-radius: 2px;
