@@ -36,17 +36,27 @@ header{
 
 /* cards */
 .card-champ{
-    background: #fff;
-    border-radius: 2px;
+    color: #fff;
+    padding-left: 22px;
     margin-bottom: 14px;
 }
 	.card-champ p{
-		margin-bottom: 0px;
+		margin-left: 17px;
 	    padding-bottom: 3px;
-	    margin-top: 1px;
 	}
 
+.icon-summoner{
+	border-radius: 60px;
+    border: 2px solid #ddd;
+}
+.name-sum{font-size: 19px;}
+
+.red .card-champ p{
+	margin-right: 17px;
+}
+
 /* buttons */
+
 #start{
 	background: #353535;
     font-size: 15px;
