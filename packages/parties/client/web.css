@@ -1,138 +1,158 @@
 /* header and menu*/
-header{
+header {
     background: #191919;
     padding: 8px 9px;
+    box-shadow: 0px 5px 5px #000000;
     color: #fff;
 }
+.logo img {
+    width: 192px;
+    position: relative;
+    top: 4px;
+}
 
-.menu{line-height: 38px;}
+.menu {line-height: 38px;}
 
 #field{
-    min-height: 900px;
-    text-align: center;
-    height: 100%;
+  min-height: 900px;
+  text-align: center;
+  height: 100%;
 }
 
-.blue{
-	background: rgba(8, 70, 94, 0.61);
+.blue {
+    background: rgba(8, 70, 94, 0.61);
+    box-shadow: 10px 0px 7px rgba(0, 0, 0, 0.7);
 }
-	.blue h2{
-		color: #ffffff;
-	}
+    .blue h2 {
+        color: #ffffff;
+    }
 
-.img-nation img{
-	margin-top: 15px;
+.img-nation img {
+    margin-top: 15px;
     margin-bottom: 13px;
     height: 70px;
 }
 
-.red{
-	background: rgba(117,39,44,0.5);
+.red {
+    background: rgba(117,39,44,0.5);
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.4);
 }
-	.red h2{
-		color: #E63636;
-	}
+    .red h2 {
+        color: #E63636;
+    }
 
 
 /* cards */
-.card-champ{
+.card-champ {
     color: #fff;
     padding-left: 22px;
     margin-bottom: 14px;
 }
-	.card-champ p{
-		margin-left: 17px;
-	    padding-bottom: 3px;
-	}
+    .card-champ p {
+        margin-left: 17px;
+        padding-bottom: 3px;
+    }
 
-.icon-summoner{
-	border-radius: 60px;
+.icon-summoner {
+    border-radius: 60px;
     border: 2px solid #ddd;
 }
-.name-sum{font-size: 19px;}
+.name-sum {font-size: 19px;}
 
-.red .card-champ p{
-	margin-right: 17px;
+.red .card-champ p {
+    margin-right: 17px;
 }
 
 /* buttons */
 
-#start{
-	background: #353535;
+#start {
+    background: #353535;
     font-size: 15px;
     border: 1px solid #FFF;
     border-radius: 3px;
     cursor: pointer;
     padding: 10px 20px;
-    color: #fff;	
+    color: #fff;    
 }
-.btn{
+.btn {
     padding: 10px 20px;
     border-radius: 2px;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     border: none;
-    font-size: 20px;	
+    font-size: 20px;    
 }
-.btn-red{background: #E63636;}
-.btn-blue{background: #08435D;}
+.btn-red {background: #E63636;}
+.btn-blue {background: #08435D;}
 
 /* chat */
-.chat{
-	padding-right: 0; 
+.chat {
+    padding-right: 0; 
 }
-#b-chat{
-	background: rgba(31,31,31,0.5);
-	color: #ffffff;
+#b-chat {
+    background: rgba(31,31,31,0.5);
+    color: #ffffff;
 }
-.box-chat{
+.box-chat {
     min-height: 800px;
     padding: 2px 7px;
     height: 100%;
 }
-	.box-chat ul{
-		width: 100%;
-		padding: 0px;
-	}
-		.box-chat ul li{
-		    text-align: right;
-		    margin-top: 9px;
-		    margin-right: 5px;
-		}
-	.box-chat span{
-		font-weight: bold;
-	}
+    .box-chat ul {
+        width: 100%;
+        padding: 0px;
+    }
+        .box-chat ul li {
+            text-align: right;
+            margin-top: 9px;
+            margin-right: 5px;
+        }
+    .box-chat span {
+        font-weight: bold;
+    }
 
-.box-join{
-	background: rgba(17, 17, 17, 0.69);
+.box-join {
+    background: rgba(17, 17, 17, 0.69);
     margin: 0px;
     padding: 11px 5px;
 }
-	.box-join p{margin:0px;}
-.box-text{
+    .box-join p {margin:0px;}
+.box-text {
     padding: 10px;
-    background: #EAEAEA;
-    box-shadow: 1px 1px 2px #BBBBBB;	
+    box-shadow: 1px 1px 2px #BBBBBB;    
 }
-	.box-text textarea{
-	    width: 100%;
-	    border: none;
-	    background: #EAEAEA;
+    .box-text textarea {
+        width: 100%;
+        border: none;
+        background: #EAEAEA;
 
-	}
+    }
+.input-chat {
+  color: #fff;
+  width: 96%;
+  background: rgba(12, 12, 12, 0.78);
+  border: none;
+  padding: 10px 9px;
+  box-shadow: 0px 0px 1px #F1F1F1;
+  border-radius: 2px;
+  font-size: 15px;  
+}
 
-.wrapper{
-	position: absolute;
+
+/* start page*/
+
+.wrapper {
+    position: absolute;
     width: 100%;
-    top: 50%;	
+    top: 50%;   
 }
-.box-start{
-	text-align: center;
+.box-start {
+    text-align: center;
 }
 
-.input-start{
-	padding: 10px 1px;
+.input-start {
+    padding: 10px 1px;
     border-radius: 3px;
     background: rgba(24, 36, 36, 0.55);
     border: 1px solid rgba(156, 156, 156, 0.47);
@@ -140,8 +160,8 @@ header{
     text-align: center;
     color: #ffffff;
 }
-.select-start{
-	background: rgba(24, 36, 36, 0.55);
+.select-start {
+    background: rgba(24, 36, 36, 0.55);
     padding: 0 0 0 41px;
     border: 1px solid rgba(156, 156, 156, 0.47);
     width: 160px;
@@ -164,8 +184,8 @@ header{
 
 }
 
-.box-layer{
-	background: rgba(17, 17, 17, 0.67);
+.box-layer {
+    background: rgba(17, 17, 17, 0.67);
     height: 294px;
     position: absolute;
     top: 30%;
@@ -173,8 +193,8 @@ header{
     width: 4000px;
     left: -54px;
 }
-.enter{
-	color: #EF7F3C;
+.enter {
+    color: #EF7F3C;
     font-weight: bold;
     font-size: 13px;
     margin-top: 7px;
