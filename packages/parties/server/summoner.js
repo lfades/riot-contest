@@ -39,10 +39,10 @@ class Summoner {
     const {id, name, profileIconId} = summoner;
     const championMastery = this.championMastery(region, id);
     // _summoner contains the fields that are stored in the party
-    // connectionId allows to link the user's browser to the application
+    // connections allows to link the user's browser to the application
     const _summoner = {id, name, connectionId: connection.id};
 
-    // If the party already exists we add the summoner or create new party
+    // If the party already exists we add the summoner or create a new party
     const updateParty = () => {
       if (partyId)
         return Parties.update({_id: partyId}, {$push: {summoners: _summoner}});
@@ -64,7 +64,7 @@ class Summoner {
     // Summoners._ensureIndex({region: 1, id: 1});
     const updated = Summoners.update({region, id}, {
       $set: {id, name, profileIconId,
-        championmastery: championMastery.map(champion => {
+        championMastery: championMastery.map(champion => {
           return _.pick(champion, this.championMasteryFields)
         })
       },

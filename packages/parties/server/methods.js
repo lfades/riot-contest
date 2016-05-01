@@ -1,8 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
+import { _ } from 'meteor/underscore';
 import { Parties, Summoners } from '../collection';
 import RiotApi from 'meteor/app:riot-api';
 import Summoner from './summoner';
+
+// Current connections that we have in the app
+const sessions = Meteor.server.sessions;
 
 Meteor.methods({
   'parties.insert' (data) {
@@ -19,10 +23,15 @@ Meteor.methods({
       summonerName: String
     });
 
-    const party = Parties.findOne({_id: data.partyId, 'summoners.name': {$ne: data.summonerName}});
+    const party = Parties.findOne({_id: data.partyId});
     
-    if (!Party)
+    if (!party)
       throw new Meteor.Error(403, 'No existe la sala');
+
+    const oldSummoner = _.findWhere(party.summoners, {name: data.summonerName})
+    
+    if (oldSummoner && sessions[oldSummoner.connectionId])
+      throw new Meteor.Error(403, 'No puedes ingresar a la sala');
 
     Summoner.update(this.connection, data);
   },

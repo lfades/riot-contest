@@ -3,7 +3,7 @@ import { Parties, Summoners } from '../collection';
 
 // This is the data we send to the client
 Meteor.publish('party', function (partyId) {
-  const party = Parties.find({_id: partyId});
+  const party = Parties.find({_id: partyId}, {fields: {'summoners.connectionId': 0}});
   if (party.count()) {
     return [
       party,
