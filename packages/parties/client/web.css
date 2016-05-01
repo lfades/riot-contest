@@ -1,6 +1,6 @@
 /* header and menu*/
 header{
-    background: #464646;
+    background: #191919;
     padding: 8px 9px;
     color: #fff;
 }
@@ -14,18 +14,20 @@ header{
 }
 
 .blue{
-	background: #117CAB;
+	background: rgba(8, 70, 94, 0.61);
 }
 	.blue h2{
 		color: #ffffff;
 	}
 
 .img-nation img{
-	width: 300px;
+	margin-top: 15px;
+    margin-bottom: 13px;
+    height: 70px;
 }
 
 .red{
-	background: #000000;
+	background: rgba(117,39,44,0.5);
 }
 	.red h2{
 		color: #E63636;
@@ -71,15 +73,13 @@ header{
 	padding-right: 0; 
 }
 #b-chat{
-	padding: 0px 7px;
+	background: rgba(31,31,31,0.5);
+	color: #ffffff;
 }
 .box-chat{
-	min-height: 800px;
-    box-shadow: 1px 1px 1px #ddd;
+    min-height: 800px;
     padding: 2px 7px;
     height: 100%;
-    border: 1px solid #ddd;
-    border-bottom: none;	
 }
 	.box-chat ul{
 		width: 100%;
@@ -94,6 +94,12 @@ header{
 		font-weight: bold;
 	}
 
+.box-join{
+	background: rgba(17, 17, 17, 0.69);
+    margin: 0px;
+    padding: 11px 5px;
+}
+	.box-join p{margin:0px;}
 .box-text{
     padding: 10px;
     background: #EAEAEA;

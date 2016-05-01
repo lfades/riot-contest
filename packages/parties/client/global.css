@@ -2,6 +2,14 @@
 ::-webkit-input-placeholder { color:#555555; }
 ::-moz-placeholder { color:#555555; } /* firefox 19+ */
 :-ms-input-placeholder { color:#555555; } /* ie */
+
+html{
+  background: url(/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;	
+}
 input:-moz-placeholder { color:#555555; }
 body{
 	margin: 0px;
