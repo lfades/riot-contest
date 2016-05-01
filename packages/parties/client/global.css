@@ -1,7 +1,7 @@
 /* all */
 
 html{
-  background: url(/bg.jpg) no-repeat center center; 
+  background: url(/bg.jpg) no-repeat; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
