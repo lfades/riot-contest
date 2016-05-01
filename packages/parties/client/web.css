@@ -10,13 +10,28 @@ header {
     position: relative;
     top: 4px;
 }
+.share-link {
+    width: 100%;
+    text-align: center;  
+}
+.select-mastery {
+    padding: 11px 20px;
+    margin-right: 13px;
+    border-radius: 3px;
+    background: #08435D;
+    font-size: 14px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    height: 41px;
+}
 
 .menu {line-height: 38px;}
 
 #field{
-  min-height: 900px;
-  text-align: center;
-  height: 100%;
+    text-align: center;
+    height: 100%;
+    display: flex;
 }
 
 .blue {
@@ -42,7 +57,10 @@ header {
     }
 
 
-/* cards */
+/* cards summoners */
+.box-summoners {
+ min-height: 500px;  
+}
 .card-champ {
     color: #fff;
     padding-left: 22px;
@@ -55,7 +73,9 @@ header {
 
 .icon-summoner {
     border-radius: 60px;
-    border: 2px solid #ddd;
+    box-shadow: 0px 1px 2px #616161;
+    border: 3px solid #191919;
+    width: 75px;
 }
 .name-sum {font-size: 19px;}
 
@@ -66,22 +86,24 @@ header {
 /* buttons */
 
 #start {
-    background: #353535;
-    font-size: 15px;
-    border: 1px solid #FFF;
+    background: #F9B730;
+    font-size: 17px;
+    border: 1px solid #946607;
     border-radius: 3px;
     cursor: pointer;
+    font-weight: bold;
     padding: 10px 20px;
-    color: #fff;    
+    width: 130px; 
 }
 .btn {
     padding: 10px 20px;
     border-radius: 2px;
+    margin-bottom: 27%;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
     border: none;
-    font-size: 20px;    
+    font-size: 20px;   
 }
 .btn-red {background: #E63636;}
 .btn-blue {background: #08435D;}
@@ -90,14 +112,14 @@ header {
 .chat {
     padding-right: 0; 
 }
-#b-chat {
+.b-chat {
     background: rgba(31,31,31,0.5);
     color: #ffffff;
+    width: 100%;
 }
 .box-chat {
-    min-height: 800px;
-    padding: 2px 7px;
-    height: 100%;
+  padding: 2px 7px;
+  flex: 1;
 }
     .box-chat ul {
         width: 100%;
@@ -120,7 +142,6 @@ header {
     .box-join p {margin:0px;}
 .box-text {
     padding: 10px;
-    box-shadow: 1px 1px 2px #BBBBBB;    
 }
     .box-text textarea {
         width: 100%;
@@ -196,6 +217,63 @@ header {
 .enter {
     color: #EF7F3C;
     font-weight: bold;
-    font-size: 13px;
-    margin-top: 7px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* box-summoner */
+.box-newsummoner{
+    position: absolute;
+    width: 100%;
+    bottom: 45%;
+    z-index: 100;
+}
+.wrapper-newsum {
+    background: rgba(0, 0, 0, 0.82);
+    width: 3000px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* footer*/
+
+.footer{
+    background: rgba(0, 0, 0, 0.75);  
+}
+
+  .footer p {
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    text-align: center;
+    margin: 0;
+  }
+
+
+
+
+@media (max-height: 800px) {
+  .img-nation img {
+    height: 60px;
+  }
+  .btn {
+    margin-bottom: 5%;
+  }
+  .icon-summoner {
+    width: 55px;
+  }
+  .name-sum {
+    font-size: 16px;
+  }
+  .box-summoners {
+    min-height: 400px;  
+  }
+
+}
+
+@media (max-width: 767px) {
+  .box-chat {
+    min-height: 300px;
+  }
 }

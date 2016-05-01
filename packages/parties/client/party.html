@@ -1,24 +1,36 @@
 <template name="party">
 	<header>
-		<div class="menu fx-row-space-bt">
+		<div class="menu fx-row-space-bt fx-xs-col-c">
 			<div class="logo">
 				<img src="/logo.png">
 			</div>
-			<div>
+			<div class="share-link">
 				Share link: https://versus.lol/a4234sadfasdf
 			</div>
-			<div>
-				<button id="start"> Start match</button>
+			<div class="fx-row">
+				<div>
+					<select class="select-mastery">
+						<option value="">Type of match</option>
+						<option value="5">All Masteries 5</option>
+						<option value="1">All Masteries 1</option>
+					</select>
+				</div>
+				<div>
+					<button id="start"> Start</button>
+				</div>				
 			</div>
+
 		</div>
 	</header>
 	<section class="fx-row fx-sm-col" id="field">
+
 		<div class="blue c-4 c-xs-1">
 			<div class="img-nation">
 				<img src="/demacia.png">
 			</div>
 
-			<div class="fx-row fx-wrap">
+
+			<div class="fx-row fx-wrap box-summoners">
 				<div class="c-7">
 					<div class="card-champ fx-center">
 						<div><img class="icon-summoner" src="/annie.jpg"></div>
@@ -27,6 +39,7 @@
 						</div>
 					</div>
 				</div>
+			
 				<div class="c-7">
 					<div class="card-champ fx-center">
 						<div><img class="icon-summoner" src="/annie.jpg"></div>
@@ -64,6 +77,7 @@
 			<div class="m-t-10">
 				<button id="demacia" class="btn btn-blue">Go with Demacia</button>
 			</div>
+
 		</div>
 
 		{{> partyChat }}
@@ -73,52 +87,64 @@
 				<img src="/noxus.png">
 			</div>
 
-			<div class="fx-row fx-wrap">
-				<div class="c-7">
-					<div class="card-champ fx-center fx-rev-row">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
+				<div class="fx-row fx-wrap box-summoners">
+					
+					<div class="c-7">
+						<div class="card-champ fx-center fx-rev-row">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">Farcros</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center fx-rev-row">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center fx-rev-row">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center fx-rev-row">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center fx-rev-row">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
 
+					<div class="c-7">
+						<div class="card-champ fx-center fx-rev-row">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">Farcros</p>
+							</div>
+						</div>
+					</div>
+					<div class="c-7">
+						<div class="card-champ fx-center fx-rev-row">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">Farcros</p>
+							</div>
+						</div>
+					</div>
+					<div class="c-7">
+						<div class="card-champ fx-center fx-rev-row">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">Farcros</p>
+							</div>
+						</div>
+					</div>
+					<div class="c-7">
+						<div class="card-champ fx-center fx-rev-row">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">Farcros</p>
+							</div>
+						</div>
+					</div>
 			</div>
 			<div class="m-t-10">
 				<button id="noxus" class="btn btn-red">Go with Noxus</button>
 			</div>
 		</div>
 	</section>
+
+	<div class="box-newsummoner fx-c">
+		<div>
+			<div class="wrapper-newsum fx-col">
+				<input id="name" class="input-start" placeholder="Summoner name" required/>
+				<p class="enter">PRESS 'ENTER' TO START</p>
+			</div>
+			
+		</div>
+	</div>
 </template>
+
