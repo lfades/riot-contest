@@ -1,9 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-
+import { Parties } from '../collections';
+/*
+ * Client helpers to control the summoner connection
+ * we use localStorage to save the summoner name, and connect to the server with
+ * that name every time that the client refresh the page or reconnect to the server
+ */
 class summoner {
   constructor () {
+    // we use a dependency to make reactive the localStorage item for summoner
     this.dep = new Tracker.Dependency;
   }
   get () {
@@ -23,6 +29,8 @@ class summoner {
       return true;
     }
   }
+  // if we remove the summoner name from localStorage and then disconnect-reconnect to the server
+  // the summoner can see the chat but can not participate until reselect his name
   close () {
     if (this.unset()) {
       Meteor.disconnect();
@@ -31,7 +39,8 @@ class summoner {
   }
   join (summonerName) {
     const partyId = FlowRouter.getParam('_id');
-    
+    if (!partyId) return;
+
     Meteor.call('parties.join', {partyId, summonerName}, (error) => {
       if (error) {
         console.log(error);
@@ -40,6 +49,10 @@ class summoner {
         this.set(summonerName);
       }
     });
+  }
+  party (fields) {
+    const partyId = FlowRouter.getParam('_id');
+    return Parties.findOne({_id: partyId}, {fields}) || {};
   }
 }
 

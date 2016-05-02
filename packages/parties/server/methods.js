@@ -36,6 +36,9 @@ const checkParty = ({partyId, summonerName}) => {
 }
 
 Meteor.methods({
+  /*
+   * Creates a new party with a summoner
+   */
   'parties.insert' (data) {
     check(data, {
       region: Match.OneOf(...RiotApi.regions),
@@ -44,6 +47,9 @@ Meteor.methods({
 
     return Summoner.update(this.connection, data);
   },
+  /*
+   * A new summoner join the party
+   */
   'parties.join' (data) {
     check(data, {
       partyId: String,
@@ -64,6 +70,9 @@ Meteor.methods({
 
     Summoner.update(this.connection, data);
   },
+  /*
+   * Add a bot to the party, the only difference with a real summoner is that is not connected to the party
+   */
   'parties.joinBot' (data) {
     check(data, {
       partyId: String,
@@ -81,6 +90,9 @@ Meteor.methods({
 
     update();
   },
+  /*
+   * Summoner choose whether to be in the team demacia (1) or Noxus (2)
+   */
   'parties.chooseSide' (data) {
     check(data, {
       partyId: String,
@@ -91,6 +103,9 @@ Meteor.methods({
       $set: {'summoners.$.side': data.side}
     });
   },
+  /*
+   * Allows to send a message to the chat
+   */
   'parties.sendMessage' (data, summoner) {
     check(data, {
       partyId: String,
@@ -111,5 +126,19 @@ Meteor.methods({
     }, {
       $push: {messages: {id, name, text}}
     });
+  },
+  'parties.roll' (data) {
+    check(data, {
+      partyId: String,
+      mastery: Match.OneOf(1, 2, 3, 4, 5)
+    });
+
+    const {partyId, mastery} = data;
+    const party = Parties.findOne({_id: party, 'summoners.connectionId': this.connection.id});
+
+    if (!party)
+      throw new Meteor.Error(403, 'No existe la sala');
+  
+    // code...
   }
 });

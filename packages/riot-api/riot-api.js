@@ -5,7 +5,7 @@ class RiotApi {
   constructor () {
     this.apiKey = '1CANTSH4RE1T';
     this._riotApiUrl = 'https://lan.api.pvp.net';
-    // the server name varies sometimes. Keep here the possible values for a server
+    // the region name varies sometimes. Keep here the possible names for a region
     this._regions = {
       na1: 'na',
       la1: 'lan',

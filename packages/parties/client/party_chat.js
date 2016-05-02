@@ -1,7 +1,8 @@
 import './party_chat.html';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Parties, Summoners } from '../collections';
+import { Summoners } from '../collections';
+import Summoner from './summoner';
 
 const getSummoner = () => {
   return Summoners.findOne({
@@ -11,13 +12,12 @@ const getSummoner = () => {
 
 Template.partyChat.helpers({
   messages () {
-    const party = Parties.findOne({_id: FlowRouter.getParam('_id')}, {fields: {messages: 1}});
-    return party && party.messages;
+    return Summoner.party({messages: 1}).messages;
   },
   summoners () {
-    const party = Parties.findOne({_id: FlowRouter.getParam('_id')}, {fields: {summoners: 1}});
-    if (party) {
-      const names = party.summoners.map(summoner => summoner.name);
+    const summoners = Summoner.party({summoners: 1}).summoners;
+    if (summoners) {
+      const names = summoners.map(summoner => summoner.name);
       return {
         names: names.join(', '),
         have: names.length > 1 ? 'have': 'has'

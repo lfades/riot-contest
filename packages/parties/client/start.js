@@ -21,7 +21,3 @@ Template.start.events({
     });
   }
 });
-
-Template.startSelect.onRendered(function (){
-
-});

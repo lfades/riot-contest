@@ -8,6 +8,21 @@ Template.party.onCreated(function () {
 });
 
 Template.party.helpers({
+  summoners (side) {
+    const party = Summoner.party({summoners: 1});
+    side = Number(side);
+    
+    if (party.summoners) {
+      const summoners = [];
+
+      party.summoners.forEach(summoner => {
+        if (summoner.side === side)
+          summoners.push(side);
+      });
+
+      return summoners;
+    }
+  },
   loggedOut () {
     return !Summoner.get();
   }

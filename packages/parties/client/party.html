@@ -29,55 +29,22 @@
 				<img src="/demacia.png">
 			</div>
 
-
 			<div class="fx-row fx-wrap box-summoners">
-				<div class="c-7">
-					<div class="card-champ fx-center">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
+				{{#each summoners '1' }}
+					<div class="c-7">
+						<div class="card-champ fx-center">
+							<div><img class="icon-summoner" src="/annie.jpg"></div>
+							<div>
+								<p class="name-sum">{{ name }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-			
-				<div class="c-7">
-					<div class="card-champ fx-center">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
-				<div class="c-7">
-					<div class="card-champ fx-center">
-						<div><img class="icon-summoner" src="/annie.jpg"></div>
-						<div>
-							<p class="name-sum">Farcros</p>
-						</div>
-					</div>
-				</div>
+				{{/each}}
 			</div>
 
 			<div class="m-t-10">
 				<button id="demacia" class="btn btn-blue">Go with Demacia</button>
 			</div>
-
 		</div>
 
 		{{> partyChat }}
@@ -87,8 +54,8 @@
 				<img src="/noxus.png">
 			</div>
 
-				<div class="fx-row fx-wrap box-summoners">
-					
+			<div class="fx-row fx-wrap box-summoners">
+				{{#each summoners '2' }}
 					<div class="c-7">
 						<div class="card-champ fx-center fx-rev-row">
 							<div><img class="icon-summoner" src="/annie.jpg"></div>
@@ -97,39 +64,7 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="c-7">
-						<div class="card-champ fx-center fx-rev-row">
-							<div><img class="icon-summoner" src="/annie.jpg"></div>
-							<div>
-								<p class="name-sum">Farcros</p>
-							</div>
-						</div>
-					</div>
-					<div class="c-7">
-						<div class="card-champ fx-center fx-rev-row">
-							<div><img class="icon-summoner" src="/annie.jpg"></div>
-							<div>
-								<p class="name-sum">Farcros</p>
-							</div>
-						</div>
-					</div>
-					<div class="c-7">
-						<div class="card-champ fx-center fx-rev-row">
-							<div><img class="icon-summoner" src="/annie.jpg"></div>
-							<div>
-								<p class="name-sum">Farcros</p>
-							</div>
-						</div>
-					</div>
-					<div class="c-7">
-						<div class="card-champ fx-center fx-rev-row">
-							<div><img class="icon-summoner" src="/annie.jpg"></div>
-							<div>
-								<p class="name-sum">Farcros</p>
-							</div>
-						</div>
-					</div>
+				{{/each}}
 			</div>
 			<div class="m-t-10">
 				<button id="noxus" class="btn btn-red">Go with Noxus</button>
