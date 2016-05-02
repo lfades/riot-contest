@@ -137,14 +137,15 @@
 		</div>
 	</section>
 
-	<div class="box-newsummoner fx-c">
-		<div>
-			<div class="wrapper-newsum fx-col">
-				<input id="name" class="input-start" placeholder="Summoner name" required/>
-				<p class="enter">PRESS 'ENTER' TO START</p>
-			</div>
-			
+	{{#if loggedOut }}
+		<div class="box-newsummoner fx-c">
+			<form id="join">
+				<div class="wrapper-newsum fx-col">
+					<input id="name" class="input-start" placeholder="Summoner name" required/>
+					<p class="enter">PRESS 'ENTER' TO START</p>
+				</div>
+			</form>
 		</div>
-	</div>
+	{{/if}}
 </template>
 
