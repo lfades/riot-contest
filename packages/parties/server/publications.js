@@ -7,7 +7,7 @@ Meteor.publish('party', function (partyId) {
   if (party.count()) {
     return [
       party,
-      Summoners.find({parties: partyId}, {fields: {championMastery: 0}})
+      Summoners.find({parties: partyId}, {fields: {id: 1, name: 1, profileIconId: 1}})
     ];
   }
   return this.ready();

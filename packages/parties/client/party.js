@@ -1,6 +1,8 @@
 import './party.html';
 import { Template } from 'meteor/templating';
+import { _ } from 'meteor/underscore';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Summoners } from '../collections';
 import Summoner from './summoner';
 
 Template.party.onCreated(function () {
@@ -11,17 +13,11 @@ Template.party.helpers({
   summoners (side) {
     const party = Summoner.party({summoners: 1});
     side = Number(side);
-    
-    if (party.summoners) {
-      const summoners = [];
 
-      party.summoners.forEach(summoner => {
-        if (summoner.side === side)
-          summoners.push(side);
-      });
-
-      return summoners;
-    }
+    return party.summoners && _.where(party.summoners, {side});
+  },
+  summoner () {
+    return Summoners.findOne({id: this.id}) || this;
   },
   loggedOut () {
     return !Summoner.get();
