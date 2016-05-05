@@ -3,7 +3,7 @@ import { HTTP } from 'meteor/http';
 // Implementación de riot api para ser utilizada con mas facilidad
 class RiotApi {
   constructor () {
-    this.apiKey = '1CANTSH4RE1T';
+    this.api_key = '1C4NTSH4R31T';
     this._riotApiUrl = 'https://lan.api.pvp.net';
     // the region name varies sometimes. Keep here the possible names for a region
     this._regions = {
@@ -57,8 +57,8 @@ class RiotApi {
       return HTTP.get(this._url(url, options)).data;
     } catch (error) {
       const {response} = error;
-      
-      if (response.statusCode === 404)
+ 
+      if (!response || response.statusCode === 404)
         return null;
 
       if (response.statusCode === 429)

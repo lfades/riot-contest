@@ -1,10 +1,12 @@
-import './main_layout.html';
+import './party/layout/party_layout.html';
 
-import './start.js';
-import './party_chat.js';
-import './party.js';
+import './start/start.js';
+import './party/header/party_header.js'
+import './party/chat/party_chat.js';
+import './party/party.js';
+
 import '../routes';
 import './status';
 
-import './global.css';
-import './web.css';
+import './css/global.css';
+import './css/web.css';

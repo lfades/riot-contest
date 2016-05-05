@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Parties } from '../collections';
+import { Parties } from 'meteor/app:collections';
 /*
  * Client helpers to control the summoner connection
  * we use localStorage to save the summoner name, and connect to the server with

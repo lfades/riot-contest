@@ -2,14 +2,17 @@ import './party.html';
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Summoners } from '../collections';
-import Summoner from './summoner';
+import { Summoners } from 'meteor/app:collections';
+import Summoner from '../summoner';
 
 Template.party.onCreated(function () {
   this.subscribe('party', FlowRouter.getParam('_id'));
 });
 
 Template.party.helpers({
+  partyId () {
+    return FlowRouter.getParam('_id');
+  },
   summoners (side) {
     const party = Summoner.party({summoners: 1});
     side = Number(side);

@@ -20,8 +20,11 @@ Package.onUse(function(api) {
     'tracker',
     'check',
     'underscore',
+    
     'kadira:flow-router',
     'kadira:blaze-layout',
+
+    'app:collections',
     'app:riot-api'
   ]);
 

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import RiotApi from 'meteor/app:riot-api';
-import { Parties, Summoners } from '../collections';
+import { Parties, Summoners } from 'meteor/app:collections';
 
 class Summoner {
   constructor () {
@@ -52,7 +52,8 @@ class Summoner {
           const doc = {id, region, name, _name, profileIconId,
             championMastery: championMastery.map(champion => {
               return _.pick(champion, this.championMasteryFields)
-            })
+            }),
+            lastUpdateAt: (new Date()).getTime()
           };
 
           if (partyId)
@@ -63,8 +64,9 @@ class Summoner {
       };
     }
     const now = new Date();
+    const khe = new Date(now.getTime());
 
-    if (summoner.lastUpdateAt < now.setDate(now.getDate - 1)) {
+    if (summoner.lastUpdateAt < now.setDate(now.getDate() - 1)) {
       const {id, name, profileIconId} = this.profile(region, _name);
       const championMastery = this.championMastery(region, id);
 
@@ -75,7 +77,8 @@ class Summoner {
             $set: {id, name, _name, profileIconId, 
               championMastery: championMastery.map(champion => {
                 return _.pick(champion, this.championMasteryFields)
-              })
+              }),
+              lastUpdateAt: (new Date()).getTime()
             }
           };
 

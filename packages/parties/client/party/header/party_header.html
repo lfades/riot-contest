@@ -1,0 +1,24 @@
+<template name="partyHeader">
+	<header>
+		<div class="menu fx-row-space-bt fx-xs-col-c">
+			<div class="logo">
+				<img src="/logo.png">
+			</div>
+			<div class="share-link">
+				Share link: https://versus.lol/party/{{ partyId }}
+			</div>
+			<div class="fx-row">
+				<div>
+					<select class="select-mastery">
+						<option value="">Type of match</option>
+						<option value="5">All Masteries 5</option>
+						<option value="1">All Masteries 1</option>
+					</select>
+				</div>
+				<div>
+					<button id="start"> Start</button>
+				</div>				
+			</div>
+		</div>
+	</header>
+</template>

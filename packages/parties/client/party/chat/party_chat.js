@@ -1,8 +1,8 @@
 import './party_chat.html';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Summoners } from '../collections';
-import Summoner from './summoner';
+import { Summoners } from 'meteor/app:collections';
+import Summoner from '../../summoner';
 
 const getSummoner = () => {
   return Summoners.findOne({

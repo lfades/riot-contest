@@ -1,4 +1,5 @@
 allow-deny@1.0.4
+app:collections@0.0.1
 app:parties@0.0.1
 app:riot-api@0.0.1
 autoupdate@1.2.9

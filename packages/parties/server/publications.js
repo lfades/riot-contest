@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties, Summoners } from '../collections';
+import { Parties, Summoners } from 'meteor/app:collections';
 
 // This is the data we send to the client
 Meteor.publish('party', function (partyId) {

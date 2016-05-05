@@ -1,12 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 import { _ } from 'meteor/underscore';
-import { Parties, Summoners } from '../collections';
+import { Parties, Summoners } from 'meteor/app:collections';
 import RiotApi from 'meteor/app:riot-api';
 import Summoner from './summoner';
 
 // Current connections that we have in the app
 const Sessions = Meteor.server.sessions;
+// return a random number between 0 and max less one
+const randomNumber = (max) => (
+  Math.floor(Math.random() * max)
+);
 
 const checkParty = ({partyId, summonerName}) => {
   const party = Parties.findOne({_id: partyId});
@@ -25,7 +29,7 @@ const checkParty = ({partyId, summonerName}) => {
     else
       count ++;
   });
-  //throw new Meteor.Error(403, 'No existe la sala');
+
   if (count >= 5)
     throw new Meteor.Error(403, 'La sala ya tiene el máximo de invocadores');
 
@@ -130,15 +134,30 @@ Meteor.methods({
   'parties.roll' (data) {
     check(data, {
       partyId: String,
-      mastery: Match.OneOf(1, 2, 3, 4, 5)
+      levels: [Match.OneOf(1, 2, 3, 4, 5)]
     });
 
-    const {partyId, mastery} = data;
-    const party = Parties.findOne({_id: party, 'summoners.connectionId': this.connection.id});
+    const {partyId, levels} = data;
+    const party = Parties.findOne({_id: partyId, 'summoners.connectionId': this.connection.id});
 
     if (!party)
       throw new Meteor.Error(403, 'No existe la sala');
   
-    // code...
+    const summoners = Summoners.find({parties: partyId}).map(({id, championMastery}) => {
+      const champions = _.filter(championMastery,
+        champion => _.contains(levels, champion.championLevel)
+      );
+      
+      return {
+        id, champion: champions[randomNumber(champions.length)]
+      };
+    });
+
+    if (!summoners.length)
+      throw new Meteor.Error(403, 'la sala no tiene invocadores');
+
+    Parties.update({_id: partyId}, {$set: {
+      champions: summoners
+    }});
   }
 });
