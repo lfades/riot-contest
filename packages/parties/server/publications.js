@@ -4,17 +4,22 @@ import PublishRelations from 'meteor/cottz:publish-relations';
 import RiotApi from 'meteor/app:riot-api';
 // We need the basic data of champions like the name and image
 // Keep the data for use and publish later
-const request = RiotApi.get('https://global.api.pvp.net/api/lol/static-data/{region}/v1.2/champion?champData=image', {
-  region: 'na',
-});
-
 const champions = {};
+let request;
 
-if (request) {
-   _.each(request.data, champion => {
-    champion.image = champion.image.full;
-    champions[champion.id] = _.omit(champion, 'id', 'key', 'title');
+if (!RiotApi.apiKey) {
+  console.log('We can not communicate with the riot games api :C. Add your key in the riot-api package (packages/riot-api/riot-api.js)');
+} else {
+  request = RiotApi.get('https://global.api.pvp.net/api/lol/static-data/{region}/v1.2/champion?champData=image', {
+    region: 'na',
   });
+
+  if (request) {
+    _.each(request.data, champion => {
+      champion.image = champion.image.full;
+      champions[champion.id] = _.omit(champion, 'id', 'key', 'title');
+    });
+  }
 }
 // ----------------------------------------------------------------------------------------------------------------------
 // publish to the client a party with his summoners

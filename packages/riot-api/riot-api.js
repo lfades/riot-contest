@@ -3,7 +3,9 @@ import { HTTP } from 'meteor/http';
 // Implementación de riot api para ser utilizada con mas facilidad
 class RiotApi {
   constructor () {
-    this.api_key = '1C4NTSH4R31T';
+    // get your riot api key here: https://developer.riotgames.com/
+    // and put it here, example: this.apiKey = '1C4NTSH4R31T';
+    this.apiKey = null;
     // the region name varies sometimes. Keep here the possible names for a region
     this._regions = {
       na1: 'na',

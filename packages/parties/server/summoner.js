@@ -32,7 +32,7 @@ class Summoner {
       playerId
     });
 
-    if (!championmastery)
+    if (!championMastery)
       throw new Meteor.Error(403, 'No hemos encontrado al invocador');
 
     if (!championMastery.length)
