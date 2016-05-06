@@ -1,5 +1,5 @@
 <template name="party">
-	{{> partyHeader }}
+	{{> partyHeader }}{{ partyId }}
 
 	<section class="fx-row fx-sm-col" id="field">
 		<div class="blue c-4 c-xs-1">
@@ -12,7 +12,13 @@
 					{{#with summoner }}
 						<div class="c-7">
 							<div class="card-champ fx-center">
-								<div><img class="icon-summoner" src="/annie.jpg"></div>
+								<div>
+									{{#if image }}
+										<img class="icon-summoner" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{{ image }}">
+									{{ else }}
+										<img class="icon-summoner" src="https://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/{{ profileIconId }}.png">
+									{{/if}}
+								</div>
 								<div>
 									<p class="name-sum">{{ name }}</p>
 								</div>

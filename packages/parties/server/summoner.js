@@ -12,8 +12,10 @@ class Summoner {
   }
   // returns the basic summoner information
   profile (region, summonerName) {
-    const summoner = RiotApi.get('/api/lol/{region}/v1.4/summoner/by-name/{summonerNames}', {
-      region: RiotApi.getRegion(region),
+    region = RiotApi.getRegion(region);
+
+    const summoner = RiotApi.get('https://{region}.api.pvp.net/api/lol/{region}/v1.4/summoner/by-name/{summonerNames}', {
+      region,
       summonerNames: summonerName
     });
 
@@ -24,11 +26,16 @@ class Summoner {
   }
   // returns the mastery of all the champions of a summoner
   championMastery (platformId, playerId) {
-    const championMastery = RiotApi.get('/championmastery/location/{platformId}/player/{playerId}/champions', {
-      platformId, playerId
+    const championMastery = RiotApi.get('https://{server}.api.pvp.net/championmastery/location/{platformId}/player/{playerId}/champions', {
+      server: RiotApi.getRegion(platformId),
+      platformId,
+      playerId
     });
 
-    if (!championMastery)
+    if (!championmastery)
+      throw new Meteor.Error(403, 'No hemos encontrado al invocador');
+
+    if (!championMastery.length)
       throw new Meteor.Error(403, 'No hemos encontrado ningun campeón con maestría');
 
     return championMastery;
@@ -98,29 +105,31 @@ class Summoner {
     };
   }
   // links Riot Api with Mongo
-  update (connection, {region, summonerName, partyId, oldSummonerId}) {
+  update (connection, {party, region = party.region, summonerName, partyId, oldSummonerId}) {
     summonerName = this.standardizedName(summonerName);
     
     const {id, name, update} = this.getSummoner(region, summonerName);
     // summoner contains the fields that are stored in the party
     // connections allows to link the user's browser to the application
     const summoner = {id, name, connectionId: connection.id};
-
     // If the party already exists we add the summoner or create a new party
     const updateParty = () => {
       if (partyId) {
+        // oldSummonerId is only existing when we want to replace a summoner
+        // that is in the room but is not connected or is a bot
         if (oldSummonerId) {
           return Parties.update(
             {_id: partyId, 'summoners.id': oldSummonerId},
-            {$set: {'summoners.$': summoner}}
+            this._setOwner({$set: {'summoners.$': summoner}}, id, party)
           );
         }
-        return Parties.update({_id: partyId}, {
+        return Parties.update({_id: partyId}, this._setOwner({
           $push: {summoners: summoner}
-        });
+        }, id, party));
       }
 
-      partyId = Parties.insert({region, owner: id, summoners: [summoner]});
+      party = {region, owner: id, summoners: [summoner]};
+      partyId = Parties.insert(party);
       return partyId;
     }
     if (!updateParty())
@@ -129,8 +138,10 @@ class Summoner {
     // This is very important, we want to clear the relationship between a
     // summoner with the party when he loses his connection to the server
     // e.g close the browser or run out of internet
-    connection.onClose(() => {
-      Parties.update({_id: partyId}, {$pull: {summoners: summoner}});
+    connection.onClose(() => {      
+      Parties.update({_id: partyId},
+        this._setOwner({$pull: {summoners: summoner}}, id, party, true)
+      );
       Summoners.update({region, id},  {$pull: {parties: partyId}});
     });
 
@@ -138,6 +149,30 @@ class Summoner {
       throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
 
     return partyId;
+  }
+  _setOwner (modifier, id, party, remove) {
+    const {owner, summoners} = party;
+    
+    const set = (op, val) => {
+      if (!modifier[op])
+        modifier[op] = {};
+      modifier[op].owner = val;
+      return modifier;
+    }
+    
+    if (!owner)
+      return set('$set', id);
+
+    if (remove && owner === id) {
+      const newOwner = _.find(summoners, user => user.id !== id);
+      
+      if (newOwner)
+        return set('$set', newOwner.id);
+      
+      return set('$unset', 1);
+    }
+
+    return modifier;
   }
 }
 

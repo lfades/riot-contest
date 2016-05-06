@@ -4,7 +4,6 @@ import { HTTP } from 'meteor/http';
 class RiotApi {
   constructor () {
     this.api_key = '1C4NTSH4R31T';
-    this._riotApiUrl = 'https://lan.api.pvp.net';
     // the region name varies sometimes. Keep here the possible names for a region
     this._regions = {
       na1: 'na',
@@ -30,11 +29,14 @@ class RiotApi {
    *   @value {string}  value for the variable, e.g: LA1
    * @return {string}
    */
-  _url (url, options) {
+  _url (url, options = {}) {
+    const char = url.indexOf('?') > -1 ? '&': '?';
+
     for (let key in options) {
-      url = url.replace(`{${key}}`, options[key]);
+      url = url.replace(new RegExp(`{${key}}`, 'g'), options[key]);
     }
-    return `${this._riotApiUrl}${url}?api_key=${this.apiKey}`;
+
+    return `${url}${char}api_key=${this.apiKey}`;
   }
   /*
    * Convert regions with the format la1, la2... to lan, las...

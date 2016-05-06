@@ -50,7 +50,7 @@ class summoner {
       }
     });
   }
-  party (fields) {
+  party (fields = {}) {
     const partyId = FlowRouter.getParam('_id');
     return Parties.findOne({_id: partyId}, {fields}) || {};
   }

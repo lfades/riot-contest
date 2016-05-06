@@ -10,9 +10,6 @@ Template.party.onCreated(function () {
 });
 
 Template.party.helpers({
-  partyId () {
-    return FlowRouter.getParam('_id');
-  },
   summoners (side) {
     const party = Summoner.party({summoners: 1});
     side = Number(side);
@@ -20,7 +17,16 @@ Template.party.helpers({
     return party.summoners && _.where(party.summoners, {side});
   },
   summoner () {
-    return Summoners.findOne({id: this.id}) || this;
+    const id = this.id;
+    const summoner = Summoners.findOne({id}) || this;
+    const champions = Summoner.party({champions: 1}).champions;
+    
+    if (champions) {
+      let champion = _.findWhere(champions, {id});
+      if (champion)
+        _.extend(summoner, champion.champion);
+    }
+    return summoner;
   },
   loggedOut () {
     return !Summoner.get();

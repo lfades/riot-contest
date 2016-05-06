@@ -25,7 +25,8 @@ Package.onUse(function(api) {
     'kadira:blaze-layout',
 
     'app:collections',
-    'app:riot-api'
+    'app:riot-api',
+    'cottz:publish-relations'
   ]);
 
   api.mainModule('client/index.js', 'client');
