@@ -23,8 +23,13 @@ Template.party.helpers({
     
     if (champions) {
       let champion = _.findWhere(champions, {id});
-      if (champion)
+      if (champion) {
+        // this way does not replace the name of the summoner
+        champion.championName = champion.name;
+        delete champion.name;
+
         _.extend(summoner, champion.champion);
+      }
     }
     return summoner;
   },
