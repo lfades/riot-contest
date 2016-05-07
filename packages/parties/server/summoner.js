@@ -20,7 +20,7 @@ class Summoner {
     });
 
     if (!summoner)
-      throw new Meteor.Error(403, 'No hay un invocador registrado con ese nombre');
+      throw new Meteor.Error(403, 'There is no a summoner registered with that name');
 
     return summoner[summonerName];
   }
@@ -33,10 +33,10 @@ class Summoner {
     });
 
     if (!championMastery)
-      throw new Meteor.Error(403, 'No hemos encontrado al invocador');
+      throw new Meteor.Error(403, 'We have not found the summoner');
 
     if (!championMastery.length)
-      throw new Meteor.Error(403, 'No hemos encontrado ningun campeón con maestría');
+      throw new Meteor.Error(403, "We have not found any champion with master's degree");
 
     return championMastery;
   }

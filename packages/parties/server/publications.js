@@ -35,7 +35,7 @@ PublishRelations('party', function (partyId) {
       }   
     });
 
-    return Summoners.find({parties: partyId}, {fields: {id: 1, name: 1, profileIconId: 1}})
+    return Summoners.find({parties: partyId}, {fields: {id: 1, name: 1, _name: 1, profileIconId: 1}})
   }
   return this.ready();
 });

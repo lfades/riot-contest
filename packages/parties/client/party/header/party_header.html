@@ -7,18 +7,23 @@
 			<div class="share-link">
 				Share link: https://versus.lol/party/{{ partyId }}
 			</div>
-			<div class="fx-row">
+			<form class="fx-row">
 				<div>
-					<select class="select-mastery">
+					<select class="select-mastery" required>
 						<option value="">Type of match</option>
-						<option value="5">All Masteries 5</option>
-						<option value="1">All Masteries 1</option>
+						<option value="123">Mastery 1 to 3</option>
+						<option value="345">Mastery 3 to 5</option>
+						<option value="5">Mastery 5</option>
+						<option value="4">Mastery 4</option>
+						<option value="3">Mastery 3</option>
+						<option value="2">Mastery 2</option>
+						<option value="1">Mastery 1</option>
 					</select>
 				</div>
 				<div>
 					<button id="start"> Start</button>
 				</div>				
-			</div>
+			</form>
 		</div>
 	</header>
 </template>

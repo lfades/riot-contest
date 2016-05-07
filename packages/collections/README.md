@@ -12,12 +12,14 @@
     {
       id: 29275,
       name: 'Farcros',
-      connectionId: 'nhYmJeRA3ePSQBFTk'
+      connectionId: 'nhYmJeRA3ePSQBFTk',
+      side: 2
     },
     {
       id: 3771372,
       name: 'Rentzo',
-      connectionId: 'NY8cQaKBiGEtCHCWg'
+      connectionId: 'NY8cQaKBiGEtCHCWg',
+      side: 1
     }
   ],
   messages: [

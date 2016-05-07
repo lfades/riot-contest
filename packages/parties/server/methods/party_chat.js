@@ -22,7 +22,7 @@ Meteor.methods({
     Parties.update({
       _id: partyId,
       // the order is important, needs to be exactly the same
-      summoners: {id, name, connectionId: this.connection.id} 
+      summoners: {$elemMatch: {id, name, connectionId: this.connection.id}}
     }, {
       $push: {messages: {id, name, text}}
     });

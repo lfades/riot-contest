@@ -1,5 +1,5 @@
 <template name="party">
-	{{> partyHeader }}{{ partyId }}
+	{{> partyHeader }}
 
 	<section class="fx-row fx-sm-col" id="field">
 		<div class="blue c-4 c-xs-1">
@@ -20,15 +20,15 @@
 									{{/if}}
 								</div>
 
-								<div class="red-champ">
-									<p>Ashe <span>S-</span></p>
-									<span>Level 5 - 102.520 Points</span>
-								</div>
+								{{#if championId }}
+									<div class="red-champ">
+										<p>{{ championName }} <span>{{ highestGrade }}</span></p>
+										<span>Level {{ championLevel }} - {{ championPoints }} Points</span>
+									</div>
+								{{/if}}
 						
-
 								<div>
 									<p class="name-sum">{{ name }}</p>
-
 								</div>
 							</div>
 						</div>
@@ -54,18 +54,25 @@
 					{{#each summoners '2' }}
 						{{#with summoner }}
 							<div class="card-champ fx-center-space-bt fx-rev-row">
-								<div><img class="icon-summoner" src="/annie.jpg"></div>
-
-								<div class="red-champ">
-									<p>Ashe <span>S-</span></p>
-									<span>Level 5 - 102.520 Points</span>
+								<div>
+									{{#if image }}
+										<img class="icon-summoner" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{{ image }}">
+									{{ else }}
+										<img class="icon-summoner" src="https://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/{{ profileIconId }}.png">
+									{{/if}}
 								</div>
+
+								{{#if championId }}
+									<div class="red-champ">
+										<p>{{ championName }} <span>{{ highestGrade }}</span></p>
+										<span>Level {{ championLevel }} - {{ championPoints }} Points</span>
+									</div>
+								{{/if}}
 						
 								<div>
-									<p class="name-sum">Farcros</p>
+									<p class="name-sum">{{ name }}</p>
 								</div>
 							</div>													
-						
 						{{/with}}
 					{{/each}}
 				</div>

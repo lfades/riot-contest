@@ -1,4 +1,5 @@
 import './party_chat.html';
+import { _ } from 'meteor/underscore';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Summoners } from 'meteor/app:collections';

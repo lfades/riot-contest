@@ -9,12 +9,21 @@ Template.partyHeader.helpers({
 });
 
 Template.partyHeader.events({
-  'click #start' (e, instance) {
+  'submit' (e, instance) {
+    e.preventDefault();
+
+    const value = instance.find('.select-mastery').value;
+    const levels = [];
+
+    for (let level of value) {
+      levels.push(Number(level));
+    }
+
     const data = {
       partyId: FlowRouter.getParam('_id'),
-      levels: [Number(instance.find('.select-mastery').value)]
+      levels
     };
-  
+
     Meteor.call('parties.roll', data, error => {
       if (error)
         console.log(error);

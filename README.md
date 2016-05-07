@@ -1,7 +1,7 @@
 # Versus.lol
 Description
 
-To see the aplication running visit [Versus.lol](https://www.versus.lol/)
+To see the aplication running visit [Versus.lol](https://www.versus.lol/). The database structure is in [packages/collections](https://github.com/Goluis/riot-contest/tree/master/packages/collections)
 
 ## Install
 1. Install [Meteor](https://www.meteor.com/install)
@@ -9,7 +9,7 @@ To see the aplication running visit [Versus.lol](https://www.versus.lol/)
 3. Run `meteor`
 
 ## API Key
-in the file [packages/riot-api/riot-api.js](https://github.com/Goluis/riot-contest/blob/master/packages/riot-api/riot-api.js) put your api key
+in the file [packages/riot-api/riot-api.js](https://github.com/Goluis/riot-contest/blob/master/packages/riot-api/riot-api.js) put your [api key](https://developer.riotgames.com/)
 ```js
 // riot-api.js
 this.apiKey = 'your-api-key';
