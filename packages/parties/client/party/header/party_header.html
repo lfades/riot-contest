@@ -20,9 +20,11 @@
 						<option value="1">Mastery 1</option>
 					</select>
 				</div>
-				<div>
-					<button id="start"> Start</button>
-				</div>				
+				{{#if isOwner }}
+					<div>
+						<button id="start"> Start</button>
+					</div>
+				{{/if}}
 			</form>
 		</div>
 	</header>

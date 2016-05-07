@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Parties } from 'meteor/app:collections';
+import { Parties, Summoners } from 'meteor/app:collections';
 /*
  * Client helpers to control the summoner connection
  * we use localStorage to save the summoner name, and connect to the server with
@@ -53,6 +53,11 @@ class summoner {
   party (fields = {}) {
     const partyId = FlowRouter.getParam('_id');
     return Parties.findOne({_id: partyId}, {fields}) || {};
+  }
+  me (fields = {}) {
+    return Summoners.findOne({
+      _name: this.get().replace(/\s/g, '').toLowerCase()
+    }, {fields});
   }
 }
 

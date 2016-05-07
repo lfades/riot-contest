@@ -138,7 +138,9 @@ class Summoner {
     // This is very important, we want to clear the relationship between a
     // summoner with the party when he loses his connection to the server
     // e.g close the browser or run out of internet
-    connection.onClose(() => {      
+    connection.onClose(() => {
+      party = Parties.findOne({_id: partyId});
+
       Parties.update({_id: partyId},
         this._setOwner({$pull: {summoners: summoner}}, id, party, true)
       );

@@ -1,10 +1,15 @@
 import './party_header.html';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import Summoner from '../../summoner.js';
 
 Template.partyHeader.helpers({
   partyId () {
     return FlowRouter.getParam('_id');
+  },
+  isOwner () {
+    const {id} = Summoner.me({id: 1}) || {};
+    return Summoner.party({owner: 1}).owner === id;
   }
 });
 

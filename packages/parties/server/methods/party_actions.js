@@ -23,8 +23,8 @@ Meteor.methods({
     });
   },
   /*
-   * 
-   *
+   * Select a champion based on required masteries,
+   * select a champion with random mastery if not find one
    */
   'parties.roll' (data) {
     check(data, {
@@ -37,11 +37,11 @@ Meteor.methods({
     const party = Parties.findOne({_id: partyId, 'summoners.connectionId': connectionId});
 
     if (!party)
-      throw new Meteor.Error(403, 'No existe la sala');
+      throw new Meteor.Error(403, 'There is no party');
 
     const summonerId = _.findWhere(party.summoners, {connectionId}).id;
     if (party.owner !== summonerId)
-      throw new Meteor.Error(403, 'Solo el owner puede hacer un roll');
+      throw new Meteor.Error(403, 'Only the owner can roll');
   
     const summoners = Summoners.find({parties: partyId}).map(({id, championMastery}) => {
       let champions = _.filter(championMastery,
@@ -57,7 +57,7 @@ Meteor.methods({
     });
 
     if (!summoners.length)
-      throw new Meteor.Error(403, 'la sala no tiene invocadores');
+      throw new Meteor.Error(403, 'the party has no summoners');
 
     Parties.update({_id: partyId}, {$set: {
       champions: summoners

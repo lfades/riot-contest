@@ -11,7 +11,7 @@ const checkParty = ({partyId, summonerName}) => {
   const party = Parties.findOne({_id: partyId});
 
   if (!party)
-    throw new Meteor.Error(403, 'No existe la sala');
+    throw new Meteor.Error(403, 'There is no party');
 
   let oldSummoner;
   let count = 0;
@@ -26,7 +26,7 @@ const checkParty = ({partyId, summonerName}) => {
   });
 
   if (count >= 10)
-    throw new Meteor.Error(403, 'La sala ya tiene el máximo de invocadores');
+    throw new Meteor.Error(403, 'The party already has the maximum of summoners.');
 
 
   return {oldSummoner, party};
@@ -58,7 +58,7 @@ Meteor.methods({
     if (oldSummoner) {
       let conId = oldSummoner.connectionId;
       if (conId && Sessions[conId])
-        throw new Meteor.Error(403, 'No puedes ingresar a la sala');
+        throw new Meteor.Error(403, 'You can not enter the room.');
       
       data.oldSummonerId = oldSummoner.id;
     }
@@ -78,12 +78,12 @@ Meteor.methods({
 
     const {oldSummoner, party} = checkParty(data);
     if (oldSummoner)
-      throw new Meteor.Error(403, 'Ya hay un invocador con ese nombre');
+      throw new Meteor.Error(403, 'There is already a summoner with that name.');
     
     const {id, name, update} = Summoner.getSummoner(party.region, data.summonerName);
 
     if (!Parties.update({_id: partyId}, {$push: {summoners: {id, name}}}))
-      throw new Meteor.Error(403, 'Ha ocurrido un error, intenta de nuevo');
+      throw new Meteor.Error(403, 'An error has occurred, try again.');
 
     update();
   }

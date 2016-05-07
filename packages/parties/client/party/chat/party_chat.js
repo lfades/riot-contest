@@ -5,12 +5,6 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Summoners } from 'meteor/app:collections';
 import Summoner from '../../summoner';
 
-const getSummoner = () => {
-  return Summoners.findOne({
-    _name: localStorage.getItem('summoner').replace(/\s/g, '').toLowerCase()
-  }, {fields: {_id: 0, id: 1, name: 1}});
-}
-
 Template.partyChat.helpers({
   messages () {
     return Summoner.party({messages: 1}).messages;
@@ -35,8 +29,9 @@ Template.partyChat.events({
       partyId: FlowRouter.getParam('_id'),
       text: instance.$('.input-chat').val()
     };
+    const summoner = Summoner.me({_id: 0, id: 1, name: 1});
 
-    Meteor.call('parties.sendMessage', data, getSummoner(), (error) => {
+    Meteor.call('parties.sendMessage', data, summoner, (error) => {
       if (error)
         console.log(error)
       else
