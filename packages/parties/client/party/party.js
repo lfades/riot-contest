@@ -26,6 +26,7 @@ Template.party.helpers({
       if (champion)
         _.extend(summoner, champion.champion);
     }
+    console.log(summoner);
     return summoner;
   },
   loggedOut () {

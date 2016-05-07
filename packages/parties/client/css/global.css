@@ -58,7 +58,7 @@ input:focus {
   -webkit-justify-content: space-between;
 }
 
-.fx-center-space {
+.fx-center-space-bt {
   display: flex;
   display: -webkit-flex;
   align-items: center;

@@ -11,7 +11,7 @@
 				{{#each summoners '1' }}
 					{{#with summoner }}
 						<div class="c-7">
-							<div class="card-champ fx-center">
+							<div class="card-champ fx-center-space-bt">
 								<div>
 									{{#if image }}
 										<img class="icon-summoner" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{{ image }}">
@@ -19,8 +19,16 @@
 										<img class="icon-summoner" src="https://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/{{ profileIconId }}.png">
 									{{/if}}
 								</div>
+
+								<div class="red-champ">
+									<p>Ashe <span>S-</span></p>
+									<span>Level 5 - 102.520 Points</span>
+								</div>
+						
+
 								<div>
 									<p class="name-sum">{{ name }}</p>
+
 								</div>
 							</div>
 						</div>
@@ -41,18 +49,26 @@
 			</div>
 
 			<div class="fx-row fx-wrap box-summoners">
-				{{#each summoners '2' }}
-					{{#with summoner }}
-						<div class="c-7">
-							<div class="card-champ fx-center fx-rev-row">
+				<div class="c-7">
+
+					{{#each summoners '2' }}
+						{{#with summoner }}
+							<div class="card-champ fx-center-space-bt fx-rev-row">
 								<div><img class="icon-summoner" src="/annie.jpg"></div>
+
+								<div class="red-champ">
+									<p>Ashe <span>S-</span></p>
+									<span>Level 5 - 102.520 Points</span>
+								</div>
+						
 								<div>
 									<p class="name-sum">Farcros</p>
 								</div>
-							</div>
-						</div>
-					{{/with}}
-				{{/each}}
+							</div>													
+						
+						{{/with}}
+					{{/each}}
+				</div>
 			</div>
 			<div class="m-t-10">
 				<button id="noxus" class="btn btn-red">Go with Noxus</button>
