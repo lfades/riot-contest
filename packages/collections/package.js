@@ -1,7 +1,7 @@
 Package.describe({
   name: 'app:collections',
   version: '0.0.1',
-  summary: 'Collections for the app',
+  summary: 'All collections in Mongodb we are using.',
   documentation: 'README.md'
 });
 

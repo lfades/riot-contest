@@ -24,7 +24,7 @@ Template.party.helpers({
     if (champions) {
       let champion = _.findWhere(champions, {id});
       if (champion) {
-        // this way does not replace the name of the summoner
+        // this way does not replace the summoner name
         champion.championName = champion.name;
         delete champion.name;
 

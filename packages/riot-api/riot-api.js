@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
-// Implementación de riot api para ser utilizada con mas facilidad
+
 class RiotApi {
   constructor () {
     // get your riot api key here: https://developer.riotgames.com/
