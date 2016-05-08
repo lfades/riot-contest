@@ -8,6 +8,16 @@ const randomNumber = (max) => (
   Math.floor(Math.random() * max)
 );
 
+const getBotMessage = (levels, denied) => {
+  const masteryText = levels.length > 1 ? 'masteries': 'mastery';
+  let message = `All Summoners have now a champion with the selected ${masteryText} :D`;
+  
+  if (denied.length)
+    message += `, Except for ${denied.join(', ')}, because there were no champions available, so I choose a champion with a random mastery.`
+
+  return message;
+}
+
 Meteor.methods({
   /*
    * Summoner choose whether to be in the team demacia (1) or Noxus (2)
@@ -43,13 +53,16 @@ Meteor.methods({
     if (party.owner !== summonerId)
       throw new Meteor.Error(403, 'Only the owner can roll');
   
-    const summoners = Summoners.find({parties: partyId}).map(({id, championMastery}) => {
+    const denied = [];
+    const summoners = Summoners.find({parties: partyId}).map(({id, name, championMastery}) => {
       let champions = _.filter(championMastery,
         champion => _.contains(levels, champion.championLevel)
       );
       
-      if (!champions.length)
+      if (!champions.length) {
+        denied.push(name);
         champions = championMastery;
+      }
       
       return {
         id, champion: champions[randomNumber(champions.length)]
@@ -59,8 +72,17 @@ Meteor.methods({
     if (!summoners.length)
       throw new Meteor.Error(403, 'the party has no summoners');
 
-    Parties.update({_id: partyId}, {$set: {
-      champions: summoners
-    }});
+    Parties.update({_id: partyId}, {
+      $set: {
+        champions: summoners
+      },
+      $push: {
+        messages: {
+          bot: true,
+          name: 'Bot Heimer',
+          text: getBotMessage(levels, denied) 
+        }
+      }
+    });
   }
 });

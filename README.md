@@ -35,7 +35,8 @@ To see the aplication running visit [Versus.lol](https://www.versus.lol/). The d
 ## Install
 1. Install [Meteor](https://www.meteor.com/install)
 1. Clone this branch to your local machine
-3. Run `meteor`
+3. Run `npm install`
+4. Run `meteor`
 
 ## API Key
 in the file [packages/riot-api/riot-api.js](https://github.com/Goluis/riot-contest/blob/master/packages/riot-api/riot-api.js) put your [api key](https://developer.riotgames.com/)

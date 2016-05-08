@@ -7,7 +7,7 @@
 			<div class="share-link">
 				Share link: https://versus.lol/party/{{ partyId }}
 			</div>
-			{{#with summoner }}
+			{{#if isOwner }}
 				<form class="fx-row">
 					<div>
 						<select class="select-mastery" required>
@@ -21,13 +21,12 @@
 							<option value="1">Mastery 1</option>
 						</select>
 					</div>
-					{{#if isOwner }}
-						<div>
-							<button id="start"> Start</button>
-						</div>
-					{{/if}}
+					
+					<div>
+						<button id="start"> Start</button>
+					</div>
 				</form>
-			{{/with}}
+			{{/if}}
 		</div>
 	</header>
 </template>

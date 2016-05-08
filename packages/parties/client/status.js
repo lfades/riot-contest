@@ -11,5 +11,5 @@ Tracker.autorun(function () {
   const summonerName = localStorage.getItem('summoner');
   
   if (summonerName)
-    Summoner.join(summonerName)
+    Summoner.join(summonerName);
 });
