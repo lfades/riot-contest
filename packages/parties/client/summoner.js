@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Parties, Summoners } from 'meteor/app:collections';
+import { ReactiveDict } from 'meteor/reactive-dict';
 /*
  * Client helpers to control the summoner connection
  * we use localStorage to save the summoner name, and connect to the server with
@@ -11,6 +12,7 @@ class summoner {
   constructor () {
     // we use a dependency to make reactive the localStorage item for summoner
     this.dep = new Tracker.Dependency;
+    this.errors = new ReactiveDict();
   }
   get () {
     this.dep.depend();
@@ -44,9 +46,11 @@ class summoner {
     Meteor.call('parties.join', {partyId, summonerName}, (error) => {
       if (error) {
         console.log(error);
+        this.errors.set('joinParty', error.reason.toUpperCase());
         this.unset();
       } else {
         this.set(summonerName);
+        this.errors.delete('joinParty');
       }
     });
   }
@@ -55,8 +59,11 @@ class summoner {
     return Parties.findOne({_id: partyId}, {fields}) || {};
   }
   me (fields = {}) {
+    const name = this.get();
+    if (!name) return;
+
     return Summoners.findOne({
-      _name: this.get().replace(/\s/g, '').toLowerCase()
+      _name: name.replace(/\s/g, '').toLowerCase()
     }, {fields});
   }
 }

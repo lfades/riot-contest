@@ -10,7 +10,9 @@
 			</div>
 			<div class="box-join">
 				{{#with summoners }}
-					<p>{{ names }} {{ have }} join the room</p>
+					{{#if names.length }}
+						<p>{{ names }} {{ have }} join the room</p>
+					{{/if}}
 				{{/with}}
 			</div>
 			<form class="box-text">

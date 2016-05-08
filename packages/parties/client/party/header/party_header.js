@@ -7,9 +7,9 @@ Template.partyHeader.helpers({
   partyId () {
     return FlowRouter.getParam('_id');
   },
-  isOwner () {
+  summoner () {
     const {id} = Summoner.me({id: 1}) || {};
-    return Summoner.party({owner: 1}).owner === id;
+    return id && {isOwner: Summoner.party({owner: 1}).owner === id};
   }
 });
 

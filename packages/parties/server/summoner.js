@@ -166,7 +166,7 @@ class Summoner {
       return set('$set', id);
 
     if (remove && owner === id) {
-      const newOwner = _.find(summoners, user => user.id !== id);
+      const newOwner = _.find(summoners, user => user.connectionId && user.id !== id);
       
       if (newOwner)
         return set('$set', newOwner.id);

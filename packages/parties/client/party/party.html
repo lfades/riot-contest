@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="m-t-10">
-				<button id="demacia" class="btn btn-blue">Go with Demacia</button>
+				<button id="demacia" class="btn btn-blue {{#if loggedOut }}hide{{/if}}">Go with Demacia</button>
 			</div>
 		</div>
 
@@ -50,7 +50,6 @@
 
 			<div class="fx-row fx-wrap box-summoners">
 				<div class="c-7">
-
 					{{#each summoners '2' }}
 						{{#with summoner }}
 							<div class="card-champ fx-center-space-bt fx-rev-row">
@@ -77,8 +76,9 @@
 					{{/each}}
 				</div>
 			</div>
+
 			<div class="m-t-10">
-				<button id="noxus" class="btn btn-red">Go with Noxus</button>
+				<button id="noxus" class="btn btn-red {{#if loggedOut }}hide{{/if}}">Go with Noxus</button>
 			</div>
 		</div>
 	</section>
@@ -87,6 +87,9 @@
 		<div class="box-newsummoner fx-c">
 			<form id="join">
 				<div class="wrapper-newsum fx-col">
+					{{#if errorMessage }}
+						<p class="enter">{{ errorMessage }}</p>
+					{{/if}}
 					<input id="name" class="input-start" placeholder="Summoner name" required/>
 					<p class="enter">PRESS 'ENTER' TO START</p>
 				</div>
@@ -94,4 +97,3 @@
 		</div>
 	{{/if}}
 </template>
-

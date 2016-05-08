@@ -39,6 +39,9 @@ Template.party.helpers({
   },
   loggedOut () {
     return !Summoner.get();
+  },
+  errorMessage () {
+    return Summoner.errors.get('joinParty');
   }
 });
 
