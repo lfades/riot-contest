@@ -16,7 +16,11 @@
 				{{/with}}
 			</div>
 			<form class="box-text">
-				<input class="input-chat" placeholder="Say something" />
+				{{#if logged }}
+					<input class="input-chat" placeholder="Say something" />
+				{{ else }}
+					<input class="input-chat" placeholder="Login to chat" disabled/>
+				{{/if}}
 			</form>
 		</div>
 	</div>

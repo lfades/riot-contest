@@ -1,6 +1,13 @@
 import './start.html';
 import { $ } from 'meteor/jquery';
 import { Template } from 'meteor/templating';
+import Summoner from '../summoner';
+
+Template.start.helpers({
+  errorMessage () {
+    return Summoner.errors.get('creatingParty');
+  }
+});
 
 Template.start.events({
   'submit' (e, instance) {
@@ -11,10 +18,15 @@ Template.start.events({
       summonerName: instance.$('#name').val()
     };
 
+    Summoner.errors.delete('creatingParty');
+
     Meteor.call('parties.insert', summoner, (error, partyId) => {
       if (error) {
         console.log(error);
+        Summoner.errors.set('creatingParty', error.reason.toUpperCase());
       } else {
+        Summoner.errors.delete('creatingParty');
+        
         localStorage.setItem('summoner', summoner.summonerName);
         FlowRouter.go(`/party/${partyId}`);
       }

@@ -3,6 +3,9 @@
 	
 	<form class="wrapper">
 		<div class="box-start">
+			{{#if errorMessage }}
+				<p class="enter">{{ errorMessage }}</p>
+			{{/if}}
 			<div>
 				<div>
 					{{> startSelect }}

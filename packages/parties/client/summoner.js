@@ -43,6 +43,8 @@ class summoner {
     const partyId = FlowRouter.getParam('_id');
     if (!partyId) return;
 
+    this.errors.delete('joinParty');
+
     Meteor.call('parties.join', {partyId, summonerName}, (error) => {
       if (error) {
         console.log(error);

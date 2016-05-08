@@ -18,6 +18,9 @@ Template.partyChat.helpers({
         have: names.length > 1 ? 'have': 'has'
       }
     }
+  },
+  logged () {
+    return Summoner.get();
   }
 });
 

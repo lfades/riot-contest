@@ -7,6 +7,7 @@ import './party/party.js';
 
 import '../routes';
 import './status';
+import './methods';
 
 import './css/global.css';
 import './css/web.css';

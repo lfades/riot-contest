@@ -4,7 +4,14 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import Summoner from '../../summoner.js';
 import Clipboard from 'clipboard';
 
+Template.partyHeader.onRendered(function () {
+  new Clipboard('.copy');
+});
+
 Template.partyHeader.helpers({
+  baseUrl () {
+    return window.location.origin || 'https://versus.lol';
+  },
   partyId () {
     return FlowRouter.getParam('_id');
   },
@@ -35,9 +42,4 @@ Template.partyHeader.events({
         console.log(error);
     });
   }
-});
-
-Template.partyHeader.onRendered(function () {
-  new Clipboard('.copy');
-
 });
