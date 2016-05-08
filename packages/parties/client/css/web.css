@@ -120,7 +120,6 @@ header {
 .btn {
     padding: 10px 20px;
     border-radius: 2px;
-    margin-bottom: 27%;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -130,6 +129,11 @@ header {
 .btn-red {background: #E63636;}
 .btn-blue {background: #08435D;}
 
+/*margin bottom of button*/
+.m-b{
+    margin-bottom: 27%;
+    min-height: 43px;
+}
 .copy {
     background: #ffffff;
     border: none;
@@ -291,7 +295,7 @@ header {
   .img-nation img {
     height: 60px;
   }
-  .btn {
+  .m-b {
     margin-bottom: 5%;
   }
   .icon-summoner {
