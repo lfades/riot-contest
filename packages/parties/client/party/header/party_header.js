@@ -2,6 +2,7 @@ import './party_header.html';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import Summoner from '../../summoner.js';
+import Clipboard from 'clipboard';
 
 Template.partyHeader.helpers({
   partyId () {
@@ -34,4 +35,9 @@ Template.partyHeader.events({
         console.log(error);
     });
   }
+});
+
+Template.partyHeader.onRendered(function () {
+  new Clipboard('.copy');
+
 });
