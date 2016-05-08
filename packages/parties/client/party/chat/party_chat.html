@@ -4,7 +4,7 @@
 			<div class="box-chat">
 				<ul>
 					{{#each messages }}
-						<li><span>{{ name }}: </span> {{ text }}</li>
+						<li><span class="{{#if bot }}bot{{/if}}" >{{ name }}: </span> {{ text }}</li>
 					{{/each}}
 				</ul>
 			</div>

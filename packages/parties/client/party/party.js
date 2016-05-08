@@ -7,7 +7,12 @@ import Summoner from '../summoner';
 import Format from './format';
 
 Template.party.onCreated(function () {
-  this.subscribe('party', FlowRouter.getParam('_id'));
+  this.subscribe('party', FlowRouter.getParam('_id'), () => {
+    if (!Summoner.party()._id) {
+      console.log('the party does not exist, you have been redirected to the main page');
+      FlowRouter.go('/');
+    }
+  });
 });
 
 Template.party.helpers({
