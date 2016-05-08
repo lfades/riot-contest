@@ -33,6 +33,8 @@ All our code is clean and with comments, go and check.
 3. Run `npm install`
 4. Run `meteor`
 
+You can run `meteor mongo` (after running the app with `meteor`) to see the local database.
+
 ## API Key
 in the file [packages/riot-api/riot-api.js](https://github.com/Goluis/riot-contest/blob/master/packages/riot-api/riot-api.js) put your [api key](https://developer.riotgames.com/)
 ```js
