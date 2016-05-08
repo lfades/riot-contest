@@ -26,7 +26,8 @@ Template.start.events({
         Summoner.errors.set('creatingParty', error.reason.toUpperCase());
       } else {
         Summoner.errors.delete('creatingParty');
-        
+        Summoner._omitNextJoin = true;
+
         localStorage.setItem('summoner', summoner.summonerName);
         FlowRouter.go(`/party/${partyId}`);
       }

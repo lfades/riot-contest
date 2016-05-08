@@ -13,6 +13,7 @@ class summoner {
     // we use a dependency to make reactive the localStorage item for summoner
     this.dep = new Tracker.Dependency;
     this.errors = new ReactiveDict();
+    this._omitNextJoin = false;
   }
   get () {
     this.dep.depend();
@@ -40,6 +41,11 @@ class summoner {
     }
   }
   join (summonerName) {
+    if (this._omitNextJoin) {
+      this._omitNextJoin = false;
+      return;
+    }
+
     const partyId = FlowRouter.getParam('_id');
     if (!partyId) return;
 
