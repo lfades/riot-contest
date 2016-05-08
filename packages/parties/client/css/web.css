@@ -130,6 +130,16 @@ header {
 .btn-red {background: #E63636;}
 .btn-blue {background: #08435D;}
 
+.copy {
+    background: #ffffff;
+    border: none;
+    padding: 2px 4px;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-left: 4px;
+    color: #424242;
+    font-weight: bold;    
+}
 /* chat */
 .chat {
     padding-right: 0; 

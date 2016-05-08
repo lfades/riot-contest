@@ -22,7 +22,9 @@ textarea:focus,
 input:focus {
     outline: 0;
 }
-
+.hide {
+  display: none;
+}
 .text-center {
   text-align: center;
 }
