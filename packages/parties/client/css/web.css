@@ -192,7 +192,9 @@ header {
   font-size: 15px;  
 }
 
-
+.bot {
+    color: #D6A94F;
+}
 /* start page*/
 
 .wrapper {
