@@ -144,6 +144,13 @@ header {
     color: #424242;
     font-weight: bold;    
 }
+    .copy:hover {
+        background: #D0D0D0;
+    }    
+    .copy:focus {
+        background: #A09F9F;
+        font-size: 14px;
+    }
 /* chat */
 .chat {
     padding-right: 0; 
