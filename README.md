@@ -1,6 +1,6 @@
 # Versus.lol
 
-To see the aplication running visit [Versus.lol](http://www.versus.lol/). The database structure is in [packages/collections](https://github.com/Goluis/riot-contest/tree/master/packages/collections)
+To see the aplication running visit [Versus.lol](http://versus.lol/). The database structure is in [packages/collections](https://github.com/Goluis/riot-contest/tree/master/packages/collections)
 
 ### What is this?
 
